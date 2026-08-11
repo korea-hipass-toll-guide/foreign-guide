@@ -3,863 +3,726 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#17377d">
-<meta name="description" content="외국인을 위한 하이패스 홈페이지 이용 안내 및 전화납부 안내">
+<meta name="theme-color" content="#ffffff">
+<meta name="description" content="외국인을 위한 미납통행료 조회·납부 안내">
 <meta name="robots" content="noindex, nofollow">
-<title>외국인을 위한 하이패스 홈페이지 이용 안내 및 전화납부 안내</title>
+<title>외국인을 위한 미납통행료 조회·납부 안내</title>
 <link rel="icon" href="assets/favicon.png">
 <style>
 :root{
-  --navy:#17377d;
-  --navy2:#102957;
+  --navy:#123a78;
+  --navy2:#0d2e60;
   --blue:#087fc3;
-  --sky:#eaf7fc;
-  --red:#ef3340;
-  --yellow:#ffd900;
-  --green:#138a63;
-  --orange:#ed9e18;
-  --ink:#20242a;
-  --muted:#66717d;
-  --line:#dce4eb;
-  --soft:#f6f8fb;
+  --sky:#eefaff;
+  --sky2:#f8fdff;
+  --line:#dce7ef;
+  --ink:#202934;
+  --muted:#65717c;
+  --green:#158663;
+  --orange:#e99517;
+  --red:#d94b48;
   --white:#fff;
-  --shadow:0 12px 34px rgba(16,41,87,.10);
-  --radius:22px;
+  --soft:#f7fafc;
+  --shadow:0 10px 28px rgba(24,64,104,.09);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  margin:0;
-  color:var(--ink);
-  background:#eef3f7;
+  margin:0;background:#edf3f7;color:var(--ink);
   font-family:"Noto Sans KR","Pretendard","Apple SD Gothic Neo","Malgun Gothic","Segoe UI",Arial,sans-serif;
-  line-height:1.58;
-  word-break:keep-all;
+  line-height:1.55;word-break:keep-all;
 }
 button,a,select{font:inherit}
 button{cursor:pointer}
 a{color:inherit}
-img{max-width:100%;display:block}
+img{display:block;max-width:100%}
 .app{
-  min-height:100vh;
-  width:min(100%,760px);
-  margin:0 auto;
-  background:#fff;
-  box-shadow:0 0 40px rgba(0,0,0,.06);
+  width:min(100%,760px);min-height:100vh;margin:0 auto;background:#fff;
+  box-shadow:0 0 35px rgba(20,55,85,.06);
 }
 .topbar{
-  position:sticky;
-  top:0;
-  z-index:30;
-  min-height:72px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  padding:12px 18px;
-  border-bottom:1px solid var(--line);
-  background:rgba(255,255,255,.96);
+  position:sticky;top:0;z-index:30;min-height:70px;padding:11px 16px;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  background:rgba(255,255,255,.98);border-bottom:1px solid #e4edf3;
   backdrop-filter:blur(8px);
 }
-.brand-wrap{display:flex;align-items:center;gap:10px;min-width:0}
-.brand-logo{width:168px;max-width:48vw}
-.hq{
-  flex:0 0 auto;
-  padding-left:10px;
-  border-left:1px solid #d9dee5;
-  color:var(--navy);
-  font-size:13px;
-  font-weight:800;
-}
-.header-actions{display:flex;align-items:center;gap:8px}
+.brand-wrap{display:flex;align-items:center;gap:9px;min-width:0}
+.brand-logo{width:162px;max-width:47vw}
+.hq{padding-left:9px;border-left:1px solid #dbe3e9;color:var(--navy);font-size:12px;font-weight:900;white-space:nowrap}
+.header-actions{display:flex;align-items:center;gap:7px}
 .icon-btn{
-  width:42px;height:42px;border-radius:13px;border:1px solid var(--line);
-  background:#fff;color:var(--navy);font-weight:900;font-size:20px;
-  display:grid;place-items:center;
+  width:40px;height:40px;border:1px solid var(--line);border-radius:12px;background:#fff;
+  color:var(--navy);font-size:21px;font-weight:900;display:grid;place-items:center;
 }
 .lang-mini{
-  max-width:125px;
-  height:42px;
-  border:1px solid var(--line);
-  border-radius:13px;
-  padding:0 10px;
-  background:#fff;
-  color:var(--navy2);
-  font-weight:800;
+  height:40px;max-width:120px;border:1px solid var(--line);border-radius:12px;
+  background:#fff;color:var(--navy2);font-weight:850;padding:0 8px;
 }
-.screen{display:none;min-height:calc(100vh - 72px)}
+.screen{display:none;min-height:calc(100vh - 70px)}
 .screen.active{display:block}
-.page-pad{padding:24px 18px 42px}
-.hero{
-  position:relative;
-  min-height:calc(100vh - 72px);
-  padding:32px 24px 28px;
-  overflow:hidden;
-  background:
-    radial-gradient(circle at 90% 18%,rgba(255,217,0,.25),transparent 23%),
-    linear-gradient(165deg,#f4fbff 0%,#e4f4fb 54%,#fff 100%);
-}
-.hero:after{
-  content:"";position:absolute;left:-20%;right:-20%;bottom:-170px;height:310px;
-  background:linear-gradient(90deg,#ddecf4,#f7fbfe);
-  border-radius:50%;
-}
-.hero-inner{position:relative;z-index:2;min-height:calc(100vh - 132px);display:flex;flex-direction:column}
-.kicker{
-  color:var(--blue);font-size:14px;font-weight:900;letter-spacing:.02em;margin-bottom:12px;
-}
-.hero h1{
-  margin:0;
-  color:var(--navy2);
-  font-size:clamp(30px,7vw,48px);
-  line-height:1.22;
-  letter-spacing:-.045em;
-}
-.hero-sub{
-  margin:16px 0 0;
-  color:#44505b;
-  font-size:16px;
-}
-.mascot-stage{
-  position:relative;
-  flex:1;
-  min-height:290px;
-  margin-top:18px;
-}
-.giltongi{
-  position:absolute;
-  left:4%;
-  bottom:-4px;
-  width:min(48vw,300px);
-  z-index:3;
-  filter:drop-shadow(0 12px 16px rgba(30,50,65,.13));
-}
-.charo{
-  position:absolute;
-  right:3%;
-  bottom:34px;
-  width:min(34vw,210px);
-  z-index:2;
-  filter:drop-shadow(0 10px 14px rgba(30,50,65,.12));
-}
-.start-btn{
-  position:relative;z-index:4;
-  width:100%;min-height:58px;border:0;border-radius:16px;
-  background:var(--navy);color:#fff;font-size:18px;font-weight:900;
-  box-shadow:0 12px 24px rgba(23,55,125,.22);
-}
-.start-note{
-  position:relative;z-index:4;text-align:center;margin:12px 0 0;color:var(--muted);font-size:12px
-}
 .page-head{
-  padding:28px 18px 22px;
-  background:linear-gradient(180deg,#f5fbff,#fff);
-  border-bottom:1px solid #edf1f4;
+  padding:25px 18px 20px;background:linear-gradient(180deg,#f5fcff 0%,#fff 100%);
+  border-bottom:1px solid #eef3f6;
 }
-.page-head h2{margin:0;color:var(--navy2);font-size:30px;line-height:1.25;letter-spacing:-.035em}
-.page-head p{margin:9px 0 0;color:var(--muted)}
-.language-head h2{font-size:32px;letter-spacing:-.02em}
-.language-head p{font-size:14px;line-height:1.8;word-break:normal}
-.language-grid{display:grid;gap:11px;margin-top:18px}
+.page-head h2{margin:0;color:var(--navy2);font-size:29px;line-height:1.25;letter-spacing:-.035em}
+.page-head p{margin:8px 0 0;color:var(--muted);font-size:14px}
+.page-pad{padding:22px 16px 38px}
+
+/* Bright language landing screen */
+.language-screen{
+  background:
+    radial-gradient(circle at 86% 12%,rgba(255,226,76,.18),transparent 22%),
+    radial-gradient(circle at 12% 82%,rgba(69,183,231,.13),transparent 24%),
+    linear-gradient(180deg,#ffffff 0%,#f5fcff 52%,#ffffff 100%);
+}
+.language-intro{text-align:center;padding:28px 18px 9px}
+.language-intro .eyebrow{color:var(--blue);font-size:13px;font-weight:900;letter-spacing:.04em}
+.language-intro h1{margin:7px 0 4px;color:var(--navy2);font-size:34px;line-height:1.15;letter-spacing:-.03em}
+.language-intro p{margin:0;color:#6a7681;font-size:13px}
+.language-grid{display:grid;gap:10px;margin-top:14px}
 .lang-btn{
-  display:flex;align-items:center;gap:13px;width:100%;min-height:62px;
-  padding:12px 16px;border:1px solid var(--line);border-radius:16px;
-  background:#fff;text-align:left;font-size:17px;font-weight:850;color:#28313b;
-  box-shadow:0 5px 16px rgba(20,50,80,.04);
+  min-height:60px;width:100%;padding:11px 15px;border:1px solid #d6e5ee;border-radius:17px;
+  display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.94);
+  color:#26323d;text-align:left;font-size:17px;font-weight:900;
+  box-shadow:0 6px 18px rgba(35,87,120,.055);
 }
-.lang-btn:hover{border-color:#9bc6e1;background:#f9fdff}
-.flag{font-size:25px;width:32px;text-align:center}
-.language-mascots{display:flex;justify-content:center;align-items:flex-end;gap:4px;margin-top:28px}
-.language-mascots .g{width:140px}
-.language-mascots .c{width:95px}
-.menu-grid{display:grid;gap:14px}
-.menu-card{
-  position:relative;overflow:hidden;border:0;border-radius:20px;padding:22px 20px;
-  color:#fff;text-align:left;min-height:145px;box-shadow:var(--shadow);
+.lang-btn:active{transform:translateY(1px);background:#f3fbff}
+.flag{width:34px;text-align:center;font-size:24px}
+.language-mascots{
+  display:flex;justify-content:center;align-items:flex-end;gap:3px;margin:17px auto 5px;
+  min-height:150px;
 }
-.menu-card strong{display:block;font-size:23px;line-height:1.3;margin-bottom:8px}
-.menu-card span{display:block;opacity:.94;font-size:14px;max-width:82%}
-.menu-card .bigicon{position:absolute;right:18px;bottom:8px;font-size:54px;opacity:.25}
-.menu-blue{background:linear-gradient(135deg,#0d5db7,#168dd1)}
-.menu-green{background:linear-gradient(135deg,#087a5e,#2aa67a)}
-.menu-orange{background:linear-gradient(135deg,#e48810,#f3b21f)}
-.menu-mascots{display:flex;justify-content:center;align-items:end;margin:28px 0 4px}
-.menu-mascots .g{width:135px}
-.menu-mascots .c{width:100px;margin-left:-12px}
+.language-mascots .g{width:128px}
+.language-mascots .c{width:92px}
+.language-note{
+  max-width:560px;margin:12px auto 0;padding:12px 14px;text-align:center;border-radius:15px;
+  background:#f6fbfe;border:1px solid #e1edf4;color:#5f6c77;font-size:12px
+}
+
+/* Main */
+.main-intro{
+  padding:26px 18px 19px;
+  background:
+    radial-gradient(circle at 92% 18%,rgba(255,221,56,.16),transparent 25%),
+    linear-gradient(160deg,#f1fbff,#fff 70%);
+}
+.main-intro h2{margin:0;color:var(--navy2);font-size:30px;line-height:1.27;letter-spacing:-.04em}
+.main-intro p{margin:9px 0 0;color:#5f6d79}
+.primary-grid{display:grid;gap:13px}
+.primary-card,.small-card{
+  width:100%;border:0;text-align:left;position:relative;overflow:hidden;
+  border-radius:20px;box-shadow:var(--shadow);
+}
+.primary-card{min-height:160px;padding:22px 20px;color:#fff}
+.primary-card strong{display:block;font-size:24px;line-height:1.3;margin-bottom:7px}
+.primary-card span{display:block;font-size:14px;opacity:.94;max-width:80%}
+.primary-card .ico{position:absolute;right:17px;bottom:11px;font-size:58px;opacity:.24}
+.online{background:linear-gradient(135deg,#0d66b8,#118fc9)}
+.contact{background:linear-gradient(135deg,#167a62,#26a278)}
+.secondary-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:13px}
+.small-card{min-height:108px;padding:17px;background:#fff;border:1px solid #dce8ef;color:var(--navy2)}
+.small-card strong{display:block;font-size:17px;line-height:1.3}
+.small-card span{display:block;margin-top:6px;color:#6b7781;font-size:12px}
+.small-card .ico{position:absolute;right:13px;bottom:8px;font-size:36px;opacity:.16}
+.main-mascots{display:flex;justify-content:center;align-items:end;margin:24px 0 0}
+.main-mascots .g{width:118px}
+.main-mascots .c{width:84px;margin-left:-8px}
+
+/* Common cards */
 .section-card{
-  border:1px solid var(--line);border-radius:20px;background:#fff;padding:20px;
-  box-shadow:0 7px 24px rgba(20,55,85,.06);margin-bottom:15px;
+  margin-bottom:14px;padding:19px;border:1px solid var(--line);border-radius:19px;
+  background:#fff;box-shadow:0 6px 21px rgba(20,58,90,.05);
 }
 .section-card h3{margin:0 0 8px;color:var(--navy2);font-size:20px}
 .section-card p{margin:0;color:var(--muted)}
-.steps{display:grid;gap:12px;margin-top:16px}
-.step{
-  display:grid;grid-template-columns:42px 1fr;gap:12px;
-  padding:14px;border-radius:16px;background:var(--soft);border:1px solid #e8edf2;
+.steps{display:grid;gap:10px;margin-top:14px}
+.step{display:grid;grid-template-columns:41px 1fr;gap:11px;padding:13px;border-radius:15px;background:#f7fafc;border:1px solid #e6edf2}
+.step-num{width:37px;height:37px;border-radius:11px;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:950}
+.step strong{display:block}
+.step p{margin:3px 0 0;color:#64707b;font-size:13px}
+.screenshot{
+  margin-top:13px;border:1px solid #dce5eb;border-radius:18px;overflow:hidden;background:#f3f7f9
 }
-.step-num{
-  width:38px;height:38px;border-radius:12px;background:var(--navy);color:#fff;
-  display:grid;place-items:center;font-weight:900
-}
-.step strong{display:block;color:#26303b;margin-top:1px}
-.step p{margin:3px 0 0;font-size:14px}
-.shot-card{
-  border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#f2f6f8;margin-top:14px
-}
-.shot-card img{width:100%;max-height:560px;object-fit:cover;object-position:top}
-.shot-caption{padding:12px 14px;background:#fff;color:#48545f;font-size:13px}
+.screenshot img{width:100%;max-height:590px;object-fit:cover;object-position:top}
+.caption{padding:12px 13px;background:#fff;color:#52606b;font-size:13px}
 .tip{
-  padding:14px 16px;border-radius:15px;background:#eef7ff;color:#214e78;
-  border-left:4px solid var(--blue);font-size:14px;margin-top:14px
+  margin-top:13px;padding:13px 14px;border-radius:14px;background:#eef8ff;color:#24577f;
+  border-left:4px solid var(--blue);font-size:13px
 }
-.warning-tip{
-  background:#fff7e8;color:#6d4b0d;border-left-color:var(--orange)
-}
+.prevention{margin-top:14px;padding:16px;border-radius:17px;background:#fffaf0;border:1px solid #f0dfb9}
+.prevention h3{margin:0 0 10px;color:#7b5510;font-size:18px}
+.checks{display:grid;gap:7px;color:#5c5141;font-size:14px}
+.checks div:before{content:"✓";color:#d0880e;font-weight:950;margin-right:8px}
+
 .action{
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  width:100%;min-height:56px;margin-top:16px;padding:12px 16px;
-  border-radius:15px;border:0;text-decoration:none;font-weight:900
+  min-height:54px;width:100%;margin-top:13px;padding:11px 14px;border:0;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;gap:7px;text-decoration:none;font-weight:900
 }
 .action-primary{background:var(--navy);color:#fff}
-.action-soft{background:#edf5fc;color:var(--navy);border:1px solid #c9dcec}
+.action-soft{background:#edf6fc;color:var(--navy);border:1px solid #cce0ec}
 .action-green{background:var(--green);color:#fff}
-.two-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.translate-gallery{display:grid;gap:14px}
-.translate-shot{
-  display:grid;grid-template-columns:58px 1fr;gap:12px;align-items:start;
-  border:1px solid var(--line);border-radius:18px;padding:14px;background:#fff
-}
-.translate-shot .badge{
-  width:44px;height:44px;border-radius:14px;background:var(--navy);color:#fff;
-  display:grid;place-items:center;font-weight:900;font-size:18px
-}
-.translate-shot img{border-radius:12px;border:1px solid #e5e9ee;margin-top:9px}
-.contact-block{border:1px solid var(--line);border-radius:20px;padding:20px;margin-bottom:14px}
-.contact-block.phone{background:linear-gradient(145deg,#f2fbf7,#fff);border-color:#cce7db}
-.contact-block.office{background:linear-gradient(145deg,#f4f8fd,#fff)}
-.contact-block.interpret{background:linear-gradient(145deg,#fff9eb,#fff);border-color:#f1dfae}
-.contact-block.chat{background:#f7f7f8}
-.contact-title{display:flex;align-items:center;gap:9px;font-size:20px;font-weight:900;color:var(--navy2)}
-.contact-title .ci{font-size:24px}
-.org{margin-top:12px;font-size:15px;font-weight:850}
-.number{margin-top:5px;font-size:26px;font-weight:950;letter-spacing:-.02em;color:var(--green)}
-.hours{margin-top:4px;color:#52606c;font-size:14px}
-.account-note{margin-top:13px;padding:12px;border-radius:13px;background:#fff;border:1px solid #dce9e3;font-size:14px}
-.prep-list{display:grid;gap:10px;margin-top:14px}
-.prep-item{display:flex;gap:10px;align-items:flex-start;padding:11px 0;border-bottom:1px dashed #e3e8ec}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+
+/* Translation */
+.translate-list{display:grid;gap:12px}
+.translate-step{display:grid;grid-template-columns:46px 1fr;gap:11px;padding:13px;border:1px solid var(--line);border-radius:17px;background:#fff}
+.translate-step .n{width:40px;height:40px;border-radius:12px;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:950}
+.translate-step strong{display:block}
+.translate-step p{margin:3px 0 0;color:#6a7680;font-size:13px}
+.translate-step img{margin-top:9px;border-radius:11px;border:1px solid #e4e9ed}
+
+/* Contacts */
+.contact-box{margin-bottom:13px;padding:19px;border-radius:19px;border:1px solid var(--line)}
+.contact-box.phone{background:linear-gradient(145deg,#f2fcf8,#fff);border-color:#cae6db}
+.contact-box.office{background:linear-gradient(145deg,#f3f9fe,#fff)}
+.contact-box.interpret{background:linear-gradient(145deg,#fffaf0,#fff);border-color:#efe0b6}
+.contact-box.chat{background:#f7f8f9}
+.contact-title{display:flex;gap:8px;align-items:center;color:var(--navy2);font-weight:950;font-size:20px}
+.org{margin-top:10px;font-weight:900;font-size:15px}
+.number{margin-top:4px;font-size:25px;font-weight:950;color:var(--green);letter-spacing:-.02em}
+.hours{margin-top:3px;color:#586773;font-size:13px}
+.account{margin-top:11px;padding:12px;border:1px solid #d8e8df;background:#fff;border-radius:13px;font-size:13px}
+.status{display:inline-flex;margin-top:10px;padding:6px 10px;border-radius:999px;background:#e9edf0;color:#65707a;font-size:12px;font-weight:850}
+.prep{display:grid;gap:8px;margin-top:11px}
+.prep-item{display:flex;gap:9px;padding:9px 0;border-bottom:1px dashed #e2e8ec}
 .prep-item:last-child{border:0}
-.prep-icon{font-size:21px;width:28px}
-.status{
-  display:inline-flex;padding:7px 11px;border-radius:999px;background:#eceff2;color:#68737d;
-  font-weight:800;font-size:13px;margin-top:12px
+.prep-item b{display:block}
+.prep-item span{font-size:13px;color:#65717c}
+
+/* FAQ */
+.notice{
+  margin-bottom:12px;padding:15px;border-radius:16px;background:#fff8ec;border:1px solid #f0d7aa;
 }
-.faq-warning{
-  padding:16px;border:1px solid #f3d39e;border-radius:17px;background:#fff9ef;margin-bottom:14px
-}
-.faq-warning strong{color:#9b5d00}
-.faq-list{display:grid;gap:10px}
-details{
-  border:1px solid var(--line);border-radius:15px;background:#fff;overflow:hidden
-}
-summary{
-  list-style:none;padding:16px 46px 16px 16px;font-weight:850;cursor:pointer;position:relative
-}
+.notice strong{color:#985f00}
+.notice div{margin-top:4px;color:#655542;font-size:13px}
+details{margin-bottom:9px;border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+summary{list-style:none;cursor:pointer;padding:15px 43px 15px 15px;position:relative;font-weight:850}
 summary::-webkit-details-marker{display:none}
-summary:after{content:"＋";position:absolute;right:16px;top:14px;color:var(--navy);font-size:22px}
+summary:after{content:"＋";position:absolute;right:14px;top:12px;color:var(--navy);font-size:22px}
 details[open] summary:after{content:"－"}
-.detail-body{padding:0 16px 16px;color:#596570;font-size:14px}
-.bottom-home{
-  display:flex;gap:10px;margin-top:18px
-}
+.answer{padding:0 15px 15px;color:#5f6d78;font-size:13px}
+
 .footer{
-  padding:24px 18px 32px;background:var(--navy2);color:#cdd8e5;text-align:center;font-size:11px
+  padding:23px 16px 29px;background:#f4f8fb;border-top:1px solid #e2ebf1;text-align:center;
+  color:#6b7882;font-size:11px
 }
-.footer img{width:220px;margin:0 auto 11px;filter:brightness(0) invert(1);opacity:.9}
-.footer strong{display:block;color:#fff;font-size:13px;margin-bottom:4px}
-@media (min-width:700px){
-  .menu-grid{grid-template-columns:1fr 1fr}
-  .menu-card:last-child{grid-column:1/-1}
-  .translate-gallery{grid-template-columns:1fr 1fr}
+.footer img{width:205px;margin:0 auto 9px}
+.footer strong{display:block;color:var(--navy2);font-size:13px;margin-bottom:3px}
+.footer.hidden{display:none}
+
+@media(min-width:680px){
+  .primary-grid{grid-template-columns:1fr 1fr}
+  .translate-list{grid-template-columns:1fr 1fr}
 }
-@media (max-width:420px){
-  .topbar{padding:10px 12px}
-  .brand-logo{width:145px}
-  .hq{font-size:11px;padding-left:7px}
-  .page-pad{padding-left:14px;padding-right:14px}
-  .hero{padding-left:19px;padding-right:19px}
-  .two-actions{grid-template-columns:1fr}
+@media(max-width:420px){
+  .topbar{padding:9px 11px}
+  .brand-logo{width:142px}
+  .hq{font-size:10px;padding-left:6px}
+  .page-pad{padding-left:13px;padding-right:13px}
+  .language-intro h1{font-size:31px}
+  .main-intro h2{font-size:27px}
+  .two{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
 <div class="app">
-  <header class="topbar" id="topbar">
-    <div class="brand-wrap">
-      <img class="brand-logo" id="brandLogo" src="assets/kec-logo-ko.png" alt="한국도로공사">
-      <span class="hq" id="hqLabel">수도권본부</span>
-    </div>
-    <div class="header-actions">
-      <button class="icon-btn" id="backBtn" aria-label="뒤로" title="뒤로">‹</button>
-      <select class="lang-mini" id="miniLang" aria-label="언어">
-        <option value="ko">한국어</option>
-        <option value="en">English</option>
-        <option value="vi">Tiếng Việt</option>
-        <option value="zh">中文</option>
-        <option value="ru">Русский</option>
-        <option value="id">Indonesia</option>
-      </select>
-    </div>
-  </header>
+<header class="topbar">
+  <div class="brand-wrap">
+    <img class="brand-logo" id="brandLogo" src="assets/kec-logo-ko.png" alt="한국도로공사">
+    <span class="hq" id="hqLabel">수도권본부</span>
+  </div>
+  <div class="header-actions">
+    <button class="icon-btn" id="backBtn" aria-label="뒤로">‹</button>
+    <select class="lang-mini" id="miniLang" aria-label="언어">
+      <option value="ko">한국어</option><option value="en">English</option>
+      <option value="vi">Tiếng Việt</option><option value="zh">中文</option>
+      <option value="ru">Русский</option><option value="id">Indonesia</option>
+    </select>
+  </div>
+</header>
 
-  <!-- 1. LANGUAGE -->
-  <section class="screen active" id="screen-language">
-    <div class="page-head language-head">
-      <h2>Select your language</h2>
-      <p>언어 선택 · Chọn ngôn ngữ · 请选择语言 · Выберите язык · Pilih bahasa</p>
+<!-- 1. LANGUAGE -->
+<section class="screen active language-screen" id="screen-language">
+  <div class="language-intro">
+    <div class="eyebrow">KOREA EXPRESSWAY CORPORATION</div>
+    <h1>Select your language</h1>
+    <p>한국어 · English · Tiếng Việt · 中文 · Русский · Bahasa Indonesia</p>
+  </div>
+  <div class="page-pad" style="padding-top:7px">
+    <div class="language-grid">
+      <button class="lang-btn" data-lang="ko"><span class="flag">🇰🇷</span>한국어</button>
+      <button class="lang-btn" data-lang="en"><span class="flag">🇺🇸</span>English</button>
+      <button class="lang-btn" data-lang="vi"><span class="flag">🇻🇳</span>Tiếng Việt</button>
+      <button class="lang-btn" data-lang="zh"><span class="flag">🇨🇳</span>中文</button>
+      <button class="lang-btn" data-lang="ru"><span class="flag">🇷🇺</span>Русский</button>
+      <button class="lang-btn" data-lang="id"><span class="flag">🇮🇩</span>Bahasa Indonesia</button>
     </div>
-    <div class="page-pad">
-      <div class="language-grid">
-        <button class="lang-btn" data-lang="ko"><span class="flag">🇰🇷</span>한국어</button>
-        <button class="lang-btn" data-lang="en"><span class="flag">🇺🇸</span>English</button>
-        <button class="lang-btn" data-lang="vi"><span class="flag">🇻🇳</span>Tiếng Việt</button>
-        <button class="lang-btn" data-lang="zh"><span class="flag">🇨🇳</span>中文</button>
-        <button class="lang-btn" data-lang="ru"><span class="flag">🇷🇺</span>Русский</button>
-        <button class="lang-btn" data-lang="id"><span class="flag">🇮🇩</span>Bahasa Indonesia</button>
-      </div>
-      <div class="language-mascots">
-        <img class="g" src="assets/giltongi.png" alt="길통이">
-        <img class="c" src="assets/charo-charo.png" alt="차로차로">
+    <div class="language-mascots">
+      <img class="g" src="assets/giltongi.png" alt="길통이">
+      <img class="c" src="assets/charo-charo.png" alt="차로차로">
+    </div>
+    <div class="language-note">Unpaid expressway toll inquiry · payment guidance · support information</div>
+  </div>
+</section>
+
+<!-- 2. MAIN -->
+<section class="screen" id="screen-menu">
+  <div class="main-intro">
+    <h2 data-i18n="mainTitle">외국인을 위한 미납통행료 조회·납부 안내</h2>
+    <p data-i18n="mainSub">하이패스 홈페이지 이용방법 및 납부안내 연락처를 안내합니다.</p>
+  </div>
+  <div class="page-pad">
+    <div class="primary-grid">
+      <button class="primary-card online" data-go="guide">
+        <strong data-i18n="onlineTitle">온라인 조회·납부</strong>
+        <span data-i18n="onlineSub">하이패스 홈페이지에서 직접 미납통행료를 확인하고 납부합니다.</span>
+        <span class="ico">🔎</span>
+      </button>
+      <button class="primary-card contact" data-go="contact">
+        <strong data-i18n="contactMenuTitle">납부안내 연락처</strong>
+        <span data-i18n="contactMenuSub">전화 안내, 외국어 통역, 가까운 영업소 방문 방법을 확인합니다.</span>
+        <span class="ico">☎</span>
+      </button>
+    </div>
+    <div class="secondary-grid">
+      <button class="small-card" data-go="translate">
+        <strong data-i18n="translateMenuTitle">스마트폰 번역방법</strong>
+        <span data-i18n="translateMenuSub">한국어 홈페이지를 원하는 언어로 번역합니다.</span>
+        <span class="ico">文</span>
+      </button>
+      <button class="small-card" data-go="faq">
+        <strong data-i18n="faqMenuTitle">유의사항 / FAQ</strong>
+        <span data-i18n="faqMenuSub">부가통행료와 자주 묻는 질문입니다.</span>
+        <span class="ico">?</span>
+      </button>
+    </div>
+    <div class="main-mascots">
+      <img class="g" src="assets/giltongi.png" alt="길통이">
+      <img class="c" src="assets/charo-charo.png" alt="차로차로">
+    </div>
+  </div>
+</section>
+
+<!-- 3. GUIDE -->
+<section class="screen" id="screen-guide">
+  <div class="page-head">
+    <h2 data-i18n="guideTitle">온라인 조회·납부</h2>
+    <p data-i18n="guideSub">공식 하이패스 홈페이지의 실제 화면을 따라 진행하세요.</p>
+  </div>
+  <div class="page-pad">
+    <div class="section-card">
+      <h3 data-i18n="stepsTitle">조회·납부 순서</h3>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div><strong data-i18n="s1t">하이패스 홈페이지 접속</strong><p data-i18n="s1b">아래 ‘하이패스 홈페이지 바로가기’를 이용합니다.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div><strong data-i18n="s2t">차량번호 입력</strong><p data-i18n="s2b">차량번호를 공백 없이 입력합니다.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div><strong data-i18n="s3t">조회 버튼 선택</strong><p data-i18n="s3b">돋보기 또는 조회 버튼을 누릅니다.</p></div></div>
+        <div class="step"><div class="step-num">4</div><div><strong data-i18n="s4t">미납내역 확인</strong><p data-i18n="s4b">화면의 안내에 따라 미납내역을 확인합니다.</p></div></div>
+        <div class="step"><div class="step-num">5</div><div><strong data-i18n="s5t">화면 안내에 따라 납부</strong><p data-i18n="s5b">이용 가능한 결제수단을 선택해 납부를 완료합니다.</p></div></div>
       </div>
     </div>
-  </section>
 
-  <!-- 2. MENU -->
-  <section class="screen" id="screen-menu">
-    <div class="page-head">
-      <h2 data-i18n="menuTitle">무엇을 도와드릴까요?</h2>
-      <p data-i18n="menuSub">원하는 메뉴를 선택하세요.</p>
+    <div class="screenshot">
+      <img src="assets/hipass-home-v4.jpg" alt="하이패스 홈페이지 첫 화면 안내">
+      <div class="caption" data-i18n="cap1">① 차량번호 입력 → ② 조회 버튼 선택</div>
     </div>
-    <div class="page-pad">
-      <div class="menu-grid">
-        <button class="menu-card menu-blue" data-go="guide">
-          <strong data-i18n="menuGuideTitle">하이패스 홈페이지 이용방법</strong>
-          <span data-i18n="menuGuideSub">미납통행료 조회·납부 화면을 따라 안내합니다.</span>
-          <span class="bigicon">▣</span>
-        </button>
-        <button class="menu-card menu-green" data-go="contact">
-          <strong data-i18n="menuContactTitle">상담 및 문의</strong>
-          <span data-i18n="menuContactSub">전화납부 상담, 영업소 방문, 외국어 통역을 안내합니다.</span>
-          <span class="bigicon">☎</span>
-        </button>
-        <button class="menu-card menu-orange" data-go="faq">
-          <strong data-i18n="menuFaqTitle">유의사항 / FAQ</strong>
-          <span data-i18n="menuFaqSub">부가통행료와 자주 묻는 질문을 확인하세요.</span>
-          <span class="bigicon">!</span>
-        </button>
-      </div>
-      <div class="menu-mascots">
-        <img class="g" src="assets/giltongi.png" alt="길통이">
-        <img class="c" src="assets/charo-charo.png" alt="차로차로">
+    <div class="screenshot">
+      <img src="assets/hipass-nonmember-v4.jpg" alt="비회원 미납통행료 조회 화면 안내">
+      <div class="caption" data-i18n="cap2">③ 미납내역 확인 → ④ 홈페이지 안내에 따라 다음 단계 진행</div>
+    </div>
+
+    <div class="tip" data-i18n="detailTip">미납 발생 일시·이용구간 등 상세 확인이 필요한 경우 하이패스 홈페이지를 이용하거나 한국도로공사가 운영하는 가까운 영업소를 방문하세요.</div>
+
+    <a class="action action-primary" href="https://www.hipass.co.kr/main.do" target="_blank" rel="noopener noreferrer" data-i18n="officialBtn">하이패스 홈페이지 바로가기 ↗</a>
+    <button class="action action-soft" data-go="translate" data-i18n="translateBtn">한국어 화면 자동번역 방법 보기</button>
+
+    <div class="prevention">
+      <h3 data-i18n="preventTitle">다음 고속도로 이용 전 확인하세요</h3>
+      <div class="checks">
+        <div data-i18n="p1">하이패스 단말기 장착 여부</div>
+        <div data-i18n="p2">하이패스 카드 삽입 여부</div>
+        <div data-i18n="p3">선불카드 잔액 확인</div>
+        <div data-i18n="p4">단말기 정상 작동 여부</div>
       </div>
     </div>
-  </section>
+    <button class="action action-soft" data-go="menu" data-i18n="backMenu">메인 메뉴로</button>
+  </div>
+</section>
 
-  <!-- 3. GUIDE -->
-  <section class="screen" id="screen-guide">
-    <div class="page-head">
-      <h2 data-i18n="guideTitle">하이패스 홈페이지 이용방법</h2>
-      <p data-i18n="guideSub">공식 하이패스 홈페이지에서 미납통행료를 조회하고 납부하는 기본 순서입니다.</p>
+<!-- 4. TRANSLATION -->
+<section class="screen" id="screen-translate">
+  <div class="page-head">
+    <h2 data-i18n="translateTitle">스마트폰 자동번역 방법</h2>
+    <p data-i18n="translateSub">하이패스 홈페이지가 한국어로 표시될 때 브라우저의 번역 기능을 이용하세요.</p>
+  </div>
+  <div class="page-pad">
+    <div class="tip" data-i18n="chromeNote">아래 화면은 Android Chrome 기준입니다. 휴대전화와 브라우저 버전에 따라 메뉴 위치가 다를 수 있습니다.</div>
+    <div class="translate-list" style="margin-top:13px">
+      <div class="translate-step"><div class="n">1</div><div><strong data-i18n="tr1t">브라우저 메뉴 열기</strong><p data-i18n="tr1b">오른쪽 위의 ⋮ 메뉴를 누릅니다.</p><img src="assets/chrome-menu.jpg" alt="브라우저 메뉴"></div></div>
+      <div class="translate-step"><div class="n">2</div><div><strong data-i18n="tr2t">‘번역’ 선택</strong><p data-i18n="tr2b">메뉴에서 번역 기능을 선택합니다.</p><img src="assets/chrome-language.jpg" alt="번역 메뉴"></div></div>
+      <div class="translate-step"><div class="n">3</div><div><strong data-i18n="tr3t">원하는 언어 선택</strong><p data-i18n="tr3b">원하는 언어를 선택하면 페이지가 번역됩니다.</p><img src="assets/chrome-translated.jpg" alt="번역 완료 화면"></div></div>
     </div>
-    <div class="page-pad">
-      <div class="section-card">
-        <h3 data-i18n="guideFlowTitle">미납통행료 조회·납부 순서</h3>
-        <div class="steps">
-          <div class="step"><div class="step-num">1</div><div><strong data-i18n="g1t">차량번호 입력</strong><p data-i18n="g1b">차량번호를 공백 없이 입력합니다.</p></div></div>
-          <div class="step"><div class="step-num">2</div><div><strong data-i18n="g2t">조회 선택</strong><p data-i18n="g2b">돋보기 또는 ‘조회’ 버튼을 누릅니다.</p></div></div>
-          <div class="step"><div class="step-num">3</div><div><strong data-i18n="g3t">미납이 있는 경우</strong><p data-i18n="g3b">공식 홈페이지의 안내에 따라 본인인증을 진행합니다.</p></div></div>
-          <div class="step"><div class="step-num">4</div><div><strong data-i18n="g4t">미납내역 확인 후 납부</strong><p data-i18n="g4b">미납내역을 확인하고 이용 가능한 방법으로 납부합니다.</p></div></div>
-        </div>
-      </div>
-
-      <div class="shot-card">
-        <img src="assets/hipass-home.jpg" alt="하이패스 홈페이지 차량번호 조회 화면">
-        <div class="shot-caption" data-i18n="shot1">① 하이패스 홈페이지 첫 화면에서 차량번호 입력칸을 찾습니다.</div>
-      </div>
-      <div class="shot-card">
-        <img src="assets/hipass-nonmember.jpg" alt="비회원 미납통행료 조회 화면">
-        <div class="shot-caption" data-i18n="shot2">② 비회원 미납통행료 조회 화면에서도 차량번호로 조회할 수 있습니다.</div>
-      </div>
-
-      <div class="tip" data-i18n="detailTip">미납 발생 일시·이용구간 등 상세 확인이 필요한 경우 하이패스 홈페이지를 이용하거나 한국도로공사가 운영하는 가까운 영업소를 방문하세요.</div>
-
+    <div class="two">
+      <button class="action action-soft" data-go="guide" data-i18n="backGuide">온라인 조회·납부로</button>
       <a class="action action-primary" href="https://www.hipass.co.kr/main.do" target="_blank" rel="noopener noreferrer" data-i18n="officialBtn">하이패스 홈페이지 바로가기 ↗</a>
-      <button class="action action-soft" data-go="translate" data-i18n="translateBtn">스마트폰 자동번역 방법 보기</button>
-
-      <div class="bottom-home">
-        <button class="action action-soft" data-go="menu" data-i18n="backMenu">메인 메뉴로</button>
-      </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- 4. TRANSLATION -->
-  <section class="screen" id="screen-translate">
-    <div class="page-head">
-      <h2 data-i18n="translateTitle">스마트폰 자동번역 방법</h2>
-      <p data-i18n="translateSub">하이패스 홈페이지가 한국어로 표시되면 브라우저 번역 기능을 이용하세요.</p>
-    </div>
-    <div class="page-pad">
-      <div class="tip" data-i18n="chromeNote">아래 화면은 Android Chrome 기준입니다. 휴대전화와 브라우저 버전에 따라 메뉴 위치는 다를 수 있습니다.</div>
-      <div class="translate-gallery" style="margin-top:15px">
-        <div class="translate-shot">
-          <div class="badge">1</div>
-          <div><strong data-i18n="tr1t">Chrome 메뉴 열기</strong><p data-i18n="tr1b">오른쪽 위의 ⋮ 메뉴를 누릅니다.</p><img src="assets/chrome-menu.jpg" alt="Chrome 메뉴"></div>
-        </div>
-        <div class="translate-shot">
-          <div class="badge">2</div>
-          <div><strong data-i18n="tr2t">‘번역’ 선택</strong><p data-i18n="tr2b">메뉴에서 번역 기능을 선택합니다.</p><img src="assets/chrome-language.jpg" alt="Chrome 번역 언어 선택"></div>
-        </div>
-        <div class="translate-shot">
-          <div class="badge">3</div>
-          <div><strong data-i18n="tr3t">원하는 언어 선택</strong><p data-i18n="tr3b">원하는 언어를 선택하면 페이지가 번역됩니다.</p><img src="assets/chrome-translated.jpg" alt="번역된 하이패스 홈페이지"></div>
+<!-- 5. CONTACT -->
+<section class="screen" id="screen-contact">
+  <div class="page-head">
+    <h2 data-i18n="contactTitle">납부안내 연락처</h2>
+    <p data-i18n="contactSub">온라인 이용이 어려운 경우 아래 방법으로 납부 안내를 받을 수 있습니다.</p>
+  </div>
+  <div class="page-pad">
+    <div class="contact-box phone">
+      <div class="contact-title"><span>☎</span><span data-i18n="phoneTitle">전화 납부안내</span></div>
+      <div class="org" data-i18n="phoneOrg">한국도로공사서비스 서부권역본부</div>
+      <div class="number">031-361-3021 ~ 3026</div>
+      <div class="hours" data-i18n="phoneHours">평일 09:00 ~ 18:00</div>
+      <div class="account" data-i18n="accountText">차량번호로 미납내역을 확인한 후 납부계좌를 문자로 별도 안내해드립니다.</div>
+      <button class="action action-green" id="showPhones" data-i18n="phoneSelect">전화번호 선택하기</button>
+      <div id="phoneList" style="display:none">
+        <div class="two">
+          <a class="action action-soft" href="tel:031-361-3021">031-361-3021</a>
+          <a class="action action-soft" href="tel:031-361-3022">031-361-3022</a>
+          <a class="action action-soft" href="tel:031-361-3023">031-361-3023</a>
+          <a class="action action-soft" href="tel:031-361-3024">031-361-3024</a>
+          <a class="action action-soft" href="tel:031-361-3025">031-361-3025</a>
+          <a class="action action-soft" href="tel:031-361-3026">031-361-3026</a>
         </div>
       </div>
-      <div class="two-actions">
-        <button class="action action-soft" data-go="guide" data-i18n="backGuide">이용방법으로 돌아가기</button>
-        <a class="action action-primary" href="https://www.hipass.co.kr/main.do" target="_blank" rel="noopener noreferrer" data-i18n="officialBtn">하이패스 홈페이지 바로가기 ↗</a>
+    </div>
+
+    <div class="contact-box interpret">
+      <div class="contact-title"><span>🌐</span><span data-i18n="interpretTitle">외국어 전화통역</span></div>
+      <div class="org">bbb Korea</div><div class="number" style="color:#a36b00">1588-5644</div>
+      <p style="margin:7px 0 0;color:#655b49;font-size:13px" data-i18n="interpretText">한국어 전화상담이 어려운 경우 외국어 전화통역 서비스를 이용할 수 있습니다.</p>
+      <a class="action action-soft" href="tel:1588-5644" data-i18n="callBbb">1588-5644 전화하기</a>
+    </div>
+
+    <div class="contact-box office">
+      <div class="contact-title"><span>🏢</span><span data-i18n="officeTitle">한국도로공사가 운영하는 가까운 영업소 방문</span></div>
+      <p style="margin:8px 0 0;color:#60707c;font-size:13px" data-i18n="officeText">온라인 이용이 어렵거나 미납 발생 일시·이용구간 등 상세 확인이 필요한 경우 가까운 영업소를 방문하세요.</p>
+    </div>
+
+    <div class="contact-box chat">
+      <div class="contact-title"><span>💬</span><span data-i18n="chatTitle">챗봇 상담</span></div>
+      <span class="status" data-i18n="chatStatus">준비 중</span>
+    </div>
+
+    <div class="section-card">
+      <h3 data-i18n="prepTitle">상담 전 준비사항</h3>
+      <div class="prep">
+        <div class="prep-item"><div>🚗</div><div><b data-i18n="prep1t">차량번호</b><span data-i18n="prep1b">상담 시 차량번호를 알려주세요.</span></div></div>
+        <div class="prep-item"><div>📄</div><div><b data-i18n="prep2t">미납 안내문·고지서·문자</b><span data-i18n="prep2b">받은 안내가 있는 경우 함께 준비하면 상담이 편리합니다.</span></div></div>
+        <div class="prep-item"><div>📱</div><div><b data-i18n="prep3t">문자를 받을 수 있는 휴대전화</b><span data-i18n="prep3b">납부계좌 안내 문자를 받을 수 있는 휴대전화를 준비하세요.</span></div></div>
       </div>
     </div>
-  </section>
+    <button class="action action-soft" data-go="menu" data-i18n="backMenu">메인 메뉴로</button>
+  </div>
+</section>
 
-  <!-- 5. CONTACT -->
-  <section class="screen" id="screen-contact">
-    <div class="page-head">
-      <h2 data-i18n="contactTitle">상담 및 문의</h2>
-      <p data-i18n="contactSub">온라인 이용이 어렵거나 전화로 납부 안내가 필요한 경우 이용하세요.</p>
-    </div>
-    <div class="page-pad">
-      <div class="contact-block phone">
-        <div class="contact-title"><span class="ci">☎</span><span data-i18n="phoneTitle">전화납부 상담</span></div>
-        <div class="org" data-i18n="phoneOrg">한국도로공사서비스 서부권역본부</div>
-        <div class="number">031-361-3021 ~ 3026</div>
-        <div class="hours" data-i18n="phoneHours">평일 09:00 ~ 18:00</div>
-        <div class="account-note" data-i18n="accountNote">차량번호로 미납내역을 확인한 후 납부계좌를 문자로 별도 안내해드립니다.</div>
-        <button class="action action-green" id="showNumbers" data-i18n="showNumbers">전화번호 선택하기</button>
-        <div id="phoneList" style="display:none;margin-top:10px">
-          <div class="two-actions">
-            <a class="action action-soft" href="tel:031-361-3021">031-361-3021</a>
-            <a class="action action-soft" href="tel:031-361-3022">031-361-3022</a>
-            <a class="action action-soft" href="tel:031-361-3023">031-361-3023</a>
-            <a class="action action-soft" href="tel:031-361-3024">031-361-3024</a>
-            <a class="action action-soft" href="tel:031-361-3025">031-361-3025</a>
-            <a class="action action-soft" href="tel:031-361-3026">031-361-3026</a>
-          </div>
-        </div>
-      </div>
+<!-- 6. FAQ -->
+<section class="screen" id="screen-faq">
+  <div class="page-head">
+    <h2 data-i18n="faqTitle">유의사항 / FAQ</h2>
+    <p data-i18n="faqSub">미납통행료와 관련해 알아둘 내용을 확인하세요.</p>
+  </div>
+  <div class="page-pad">
+    <div class="notice"><strong data-i18n="n1t">반복 미납 시 부가통행료 ×10</strong><div data-i18n="n1b">최근 1년간 미납이 20회 이상 발생하면 20회째 미납 건부터 통행료의 10배에 해당하는 부가통행료가 부과될 수 있습니다.</div></div>
+    <div class="notice"><strong data-i18n="n2t">장기 체납 시 조치 가능</strong><div data-i18n="n2b">장기 체납 시 차량 강제인도·공매, 재산 압류, 형사고발 등의 조치가 진행될 수 있습니다.</div></div>
+    <div class="notice"><strong data-i18n="n3t">미납 발생 일시·이용구간 확인</strong><div data-i18n="n3b">하이패스 홈페이지를 이용하거나 한국도로공사가 운영하는 가까운 영업소에서 확인하세요.</div></div>
 
-      <div class="contact-block office">
-        <div class="contact-title"><span class="ci">🏢</span><span data-i18n="officeTitle">한국도로공사가 운영하는 가까운 영업소 방문</span></div>
-        <p style="margin-top:10px" data-i18n="officeBody">온라인 이용이 어렵거나 미납 발생 일시·이용구간 등 상세 확인이 필요한 경우 가까운 영업소를 방문하세요.</p>
-      </div>
+    <details><summary data-i18n="q1">미납통행료는 어떻게 조회하나요?</summary><div class="answer" data-i18n="a1">메인 메뉴의 ‘온라인 조회·납부’를 선택한 뒤 화면 안내를 따라 하이패스 홈페이지에서 차량번호로 조회하세요.</div></details>
+    <details><summary data-i18n="q2">전화로 납부안내를 받으려면 어떻게 하나요?</summary><div class="answer" data-i18n="a2">평일 09:00~18:00에 031-361-3021~3026으로 전화하면 미납내역 확인 후 납부계좌를 문자로 안내해드립니다.</div></details>
+    <details><summary data-i18n="q3">하이패스 홈페이지가 한국어로 나오면 어떻게 하나요?</summary><div class="answer" data-i18n="a3">메인 메뉴의 ‘스마트폰 번역방법’을 참고하여 브라우저 번역 기능을 이용하세요.</div></details>
+    <details><summary data-i18n="q4">한국어 전화상담이 어렵습니다.</summary><div class="answer" data-i18n="a4">bbb Korea 1588-5644의 외국어 전화통역 서비스를 이용할 수 있습니다.</div></details>
+    <button class="action action-soft" data-go="menu" data-i18n="backMenu">메인 메뉴로</button>
+  </div>
+</section>
 
-      <div class="contact-block interpret">
-        <div class="contact-title"><span class="ci">🌐</span><span data-i18n="interpretTitle">외국어 전화통역</span></div>
-        <div class="org">bbb Korea</div>
-        <div class="number" style="color:#9b6500">1588-5644</div>
-        <p style="margin-top:8px" data-i18n="interpretBody">한국어 상담이 어려운 경우 bbb코리아의 20개 언어 전화통역 서비스를 이용할 수 있습니다.</p>
-        <a class="action action-soft" href="tel:1588-5644" data-i18n="callInterpreter">1588-5644 전화하기</a>
-      </div>
-
-      <div class="contact-block chat">
-        <div class="contact-title"><span class="ci">💬</span><span data-i18n="chatTitle">챗봇 상담</span></div>
-        <span class="status" data-i18n="chatStatus">준비 중</span>
-      </div>
-
-      <div class="section-card">
-        <h3 data-i18n="prepTitle">상담 전 준비사항</h3>
-        <div class="prep-list">
-          <div class="prep-item"><span class="prep-icon">🚗</span><div><strong data-i18n="prep1t">차량번호</strong><p data-i18n="prep1b">상담 시 차량번호를 알려주세요.</p></div></div>
-          <div class="prep-item"><span class="prep-icon">📄</span><div><strong data-i18n="prep2t">미납 안내문·고지서·문자</strong><p data-i18n="prep2b">받은 안내가 있는 경우 함께 확인하면 상담이 편리합니다.</p></div></div>
-          <div class="prep-item"><span class="prep-icon">📱</span><div><strong data-i18n="prep3t">문자를 받을 수 있는 휴대전화</strong><p data-i18n="prep3b">납부계좌 안내 문자를 받을 수 있는 휴대전화를 준비하세요.</p></div></div>
-        </div>
-      </div>
-
-      <button class="action action-soft" data-go="menu" data-i18n="backMenu">메인 메뉴로</button>
-    </div>
-  </section>
-
-  <!-- 6. FAQ -->
-  <section class="screen" id="screen-faq">
-    <div class="page-head">
-      <h2 data-i18n="faqTitle">유의사항 / FAQ</h2>
-      <p data-i18n="faqSub">미납통행료 이용 전에 알아둘 내용을 확인하세요.</p>
-    </div>
-    <div class="page-pad">
-      <div class="faq-warning">
-        <strong data-i18n="warn1t">반복 미납 시 부가통행료 ×10</strong>
-        <div style="margin-top:5px" data-i18n="warn1b">최근 1년간 미납이 20회 이상 발생하면 20회째 미납 건부터 통행료의 10배에 해당하는 부가통행료가 부과될 수 있습니다.</div>
-      </div>
-      <div class="faq-warning">
-        <strong data-i18n="warn2t">장기 체납 시 법적 조치 가능</strong>
-        <div style="margin-top:5px" data-i18n="warn2b">장기 체납 시 차량 강제인도·공매, 재산 압류, 형사고발 등의 조치가 진행될 수 있습니다.</div>
-      </div>
-
-      <div class="faq-list">
-        <details><summary data-i18n="q1">미납통행료는 어떻게 조회하나요?</summary><div class="detail-body" data-i18n="a1">하이패스 홈페이지에서 차량번호를 입력해 조회할 수 있습니다. 메인 메뉴의 ‘하이패스 홈페이지 이용방법’을 참고하세요.</div></details>
-        <details><summary data-i18n="q2">전화로 납부하려면 어떻게 하나요?</summary><div class="detail-body" data-i18n="a2">평일 09:00~18:00에 한국도로공사서비스 서부권역본부(031-361-3021~3026)로 전화하세요. 미납내역 확인 후 납부계좌를 문자로 안내해드립니다.</div></details>
-        <details><summary data-i18n="q3">하이패스 홈페이지가 한국어로 나오면 어떻게 하나요?</summary><div class="detail-body" data-i18n="a3">스마트폰 브라우저의 자동번역 기능을 이용하세요. 이 페이지의 ‘스마트폰 자동번역 방법’에서 화면을 따라 확인할 수 있습니다.</div></details>
-        <details><summary data-i18n="q4">편의점에서도 납부할 수 있나요?</summary><div class="detail-body" data-i18n="a4">고지서 종류와 납부기한 등에 따라 편의점 납부가 제한될 수 있습니다. 안내문을 확인하거나 전화상담 또는 영업소 방문을 통해 확인하세요.</div></details>
-        <details><summary data-i18n="q5">미납 발생 일시나 이용구간을 확인하려면 어떻게 하나요?</summary><div class="detail-body" data-i18n="a5">하이패스 홈페이지를 이용하거나 한국도로공사가 운영하는 가까운 영업소를 방문해 확인하세요.</div></details>
-        <details><summary data-i18n="q6">한국어 전화상담이 어렵습니다.</summary><div class="detail-body" data-i18n="a6">bbb코리아 1588-5644의 외국어 전화통역 서비스를 이용할 수 있습니다.</div></details>
-      </div>
-
-      <button class="action action-soft" data-go="menu" data-i18n="backMenu">메인 메뉴로</button>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <img id="footerLogo" src="assets/kec-logo-ko.png" alt="한국도로공사">
-    <strong id="footerOrg">한국도로공사 수도권본부</strong>
-    <span data-i18n="footerText">외국인을 위한 하이패스 홈페이지 이용 안내 및 전화납부 안내</span>
-  </footer>
+<footer class="footer" id="footer">
+  <img id="footerLogo" src="assets/kec-logo-ko.png" alt="한국도로공사">
+  <strong id="footerOrg">한국도로공사 수도권본부</strong>
+  <span data-i18n="footerText">외국인을 위한 미납통행료 조회·납부 안내</span>
+</footer>
 </div>
 
 <script>
-const translations = {
+const T={
 ko:{
-  pageTitle:"외국인을 위한 하이패스 홈페이지 이용 안내 및 전화납부 안내",
-  languageTitle:"언어를 선택하세요",languageSub:"선택한 언어로 안내 내용을 확인할 수 있습니다.",
-  menuTitle:"무엇을 도와드릴까요?",menuSub:"원하는 메뉴를 선택하세요.",
-  menuGuideTitle:"하이패스 홈페이지 이용방법",menuGuideSub:"미납통행료 조회·납부 화면을 따라 안내합니다.",
-  menuContactTitle:"상담 및 문의",menuContactSub:"전화납부 상담, 영업소 방문, 외국어 통역을 안내합니다.",
-  menuFaqTitle:"유의사항 / FAQ",menuFaqSub:"부가통행료와 자주 묻는 질문을 확인하세요.",
-  guideTitle:"하이패스 홈페이지 이용방법",guideSub:"공식 하이패스 홈페이지에서 미납통행료를 조회하고 납부하는 기본 순서입니다.",
-  guideFlowTitle:"미납통행료 조회·납부 순서",
-  g1t:"차량번호 입력",g1b:"차량번호를 공백 없이 입력합니다.",
-  g2t:"조회 선택",g2b:"돋보기 또는 ‘조회’ 버튼을 누릅니다.",
-  g3t:"미납이 있는 경우",g3b:"공식 홈페이지의 안내에 따라 본인인증을 진행합니다.",
-  g4t:"미납내역 확인 후 납부",g4b:"미납내역을 확인하고 이용 가능한 방법으로 납부합니다.",
-  shot1:"① 하이패스 홈페이지 첫 화면에서 차량번호 입력칸을 찾습니다.",
-  shot2:"② 비회원 미납통행료 조회 화면에서도 차량번호로 조회할 수 있습니다.",
-  detailTip:"미납 발생 일시·이용구간 등 상세 확인이 필요한 경우 하이패스 홈페이지를 이용하거나 한국도로공사가 운영하는 가까운 영업소를 방문하세요.",
-  officialBtn:"하이패스 홈페이지 바로가기 ↗",translateBtn:"스마트폰 자동번역 방법 보기",backMenu:"메인 메뉴로",backGuide:"이용방법으로 돌아가기",
-  translateTitle:"스마트폰 자동번역 방법",translateSub:"하이패스 홈페이지가 한국어로 표시되면 브라우저 번역 기능을 이용하세요.",
-  chromeNote:"아래 화면은 Android Chrome 기준입니다. 휴대전화와 브라우저 버전에 따라 메뉴 위치는 다를 수 있습니다.",
-  tr1t:"Chrome 메뉴 열기",tr1b:"오른쪽 위의 ⋮ 메뉴를 누릅니다.",
-  tr2t:"‘번역’ 선택",tr2b:"메뉴에서 번역 기능을 선택합니다.",
-  tr3t:"원하는 언어 선택",tr3b:"원하는 언어를 선택하면 페이지가 번역됩니다.",
-  contactTitle:"상담 및 문의",contactSub:"온라인 이용이 어렵거나 전화로 납부 안내가 필요한 경우 이용하세요.",
-  phoneTitle:"전화납부 상담",phoneOrg:"한국도로공사서비스 서부권역본부",phoneHours:"평일 09:00 ~ 18:00",
-  accountNote:"차량번호로 미납내역을 확인한 후 납부계좌를 문자로 별도 안내해드립니다.",showNumbers:"전화번호 선택하기",
-  officeTitle:"한국도로공사가 운영하는 가까운 영업소 방문",officeBody:"온라인 이용이 어렵거나 미납 발생 일시·이용구간 등 상세 확인이 필요한 경우 가까운 영업소를 방문하세요.",
-  interpretTitle:"외국어 전화통역",interpretBody:"한국어 상담이 어려운 경우 bbb코리아의 20개 언어 전화통역 서비스를 이용할 수 있습니다.",callInterpreter:"1588-5644 전화하기",
-  chatTitle:"챗봇 상담",chatStatus:"준비 중",
-  prepTitle:"상담 전 준비사항",prep1t:"차량번호",prep1b:"상담 시 차량번호를 알려주세요.",
-  prep2t:"미납 안내문·고지서·문자",prep2b:"받은 안내가 있는 경우 함께 확인하면 상담이 편리합니다.",
-  prep3t:"문자를 받을 수 있는 휴대전화",prep3b:"납부계좌 안내 문자를 받을 수 있는 휴대전화를 준비하세요.",
-  faqTitle:"유의사항 / FAQ",faqSub:"미납통행료 이용 전에 알아둘 내용을 확인하세요.",
-  warn1t:"반복 미납 시 부가통행료 ×10",warn1b:"최근 1년간 미납이 20회 이상 발생하면 20회째 미납 건부터 통행료의 10배에 해당하는 부가통행료가 부과될 수 있습니다.",
-  warn2t:"장기 체납 시 법적 조치 가능",warn2b:"장기 체납 시 차량 강제인도·공매, 재산 압류, 형사고발 등의 조치가 진행될 수 있습니다.",
-  q1:"미납통행료는 어떻게 조회하나요?",a1:"하이패스 홈페이지에서 차량번호를 입력해 조회할 수 있습니다. 메인 메뉴의 ‘하이패스 홈페이지 이용방법’을 참고하세요.",
-  q2:"전화로 납부하려면 어떻게 하나요?",a2:"평일 09:00~18:00에 한국도로공사서비스 서부권역본부(031-361-3021~3026)로 전화하세요. 미납내역 확인 후 납부계좌를 문자로 안내해드립니다.",
-  q3:"하이패스 홈페이지가 한국어로 나오면 어떻게 하나요?",a3:"스마트폰 브라우저의 자동번역 기능을 이용하세요. 이 페이지의 ‘스마트폰 자동번역 방법’에서 화면을 따라 확인할 수 있습니다.",
-  q4:"편의점에서도 납부할 수 있나요?",a4:"고지서 종류와 납부기한 등에 따라 편의점 납부가 제한될 수 있습니다. 안내문을 확인하거나 전화상담 또는 영업소 방문을 통해 확인하세요.",
-  q5:"미납 발생 일시나 이용구간을 확인하려면 어떻게 하나요?",a5:"하이패스 홈페이지를 이용하거나 한국도로공사가 운영하는 가까운 영업소를 방문해 확인하세요.",
-  q6:"한국어 전화상담이 어렵습니다.",a6:"bbb코리아 1588-5644의 외국어 전화통역 서비스를 이용할 수 있습니다.",
-  footerText:"외국인을 위한 하이패스 홈페이지 이용 안내 및 전화납부 안내"
+mainTitle:"외국인을 위한 미납통행료 조회·납부 안내",mainSub:"하이패스 홈페이지 이용방법 및 납부안내 연락처를 안내합니다.",
+onlineTitle:"온라인 조회·납부",onlineSub:"하이패스 홈페이지에서 직접 미납통행료를 확인하고 납부합니다.",
+contactMenuTitle:"납부안내 연락처",contactMenuSub:"전화 안내, 외국어 통역, 가까운 영업소 방문 방법을 확인합니다.",
+translateMenuTitle:"스마트폰 번역방법",translateMenuSub:"한국어 홈페이지를 원하는 언어로 번역합니다.",
+faqMenuTitle:"유의사항 / FAQ",faqMenuSub:"부가통행료와 자주 묻는 질문입니다.",
+guideTitle:"온라인 조회·납부",guideSub:"공식 하이패스 홈페이지의 실제 화면을 따라 진행하세요.",stepsTitle:"조회·납부 순서",
+s1t:"하이패스 홈페이지 접속",s1b:"아래 ‘하이패스 홈페이지 바로가기’를 이용합니다.",s2t:"차량번호 입력",s2b:"차량번호를 공백 없이 입력합니다.",
+s3t:"조회 버튼 선택",s3b:"돋보기 또는 조회 버튼을 누릅니다.",s4t:"미납내역 확인",s4b:"화면의 안내에 따라 미납내역을 확인합니다.",
+s5t:"화면 안내에 따라 납부",s5b:"이용 가능한 결제수단을 선택해 납부를 완료합니다.",
+cap1:"① 차량번호 입력 → ② 조회 버튼 선택",cap2:"③ 미납내역 확인 → ④ 홈페이지 안내에 따라 다음 단계 진행",
+detailTip:"미납 발생 일시·이용구간 등 상세 확인이 필요한 경우 하이패스 홈페이지를 이용하거나 한국도로공사가 운영하는 가까운 영업소를 방문하세요.",
+officialBtn:"하이패스 홈페이지 바로가기 ↗",translateBtn:"한국어 화면 자동번역 방법 보기",
+preventTitle:"다음 고속도로 이용 전 확인하세요",p1:"하이패스 단말기 장착 여부",p2:"하이패스 카드 삽입 여부",p3:"선불카드 잔액 확인",p4:"단말기 정상 작동 여부",
+translateTitle:"스마트폰 자동번역 방법",translateSub:"하이패스 홈페이지가 한국어로 표시될 때 브라우저의 번역 기능을 이용하세요.",
+chromeNote:"아래 화면은 Android Chrome 기준입니다. 휴대전화와 브라우저 버전에 따라 메뉴 위치가 다를 수 있습니다.",
+tr1t:"브라우저 메뉴 열기",tr1b:"오른쪽 위의 ⋮ 메뉴를 누릅니다.",tr2t:"‘번역’ 선택",tr2b:"메뉴에서 번역 기능을 선택합니다.",tr3t:"원하는 언어 선택",tr3b:"원하는 언어를 선택하면 페이지가 번역됩니다.",
+backGuide:"온라인 조회·납부로",contactTitle:"납부안내 연락처",contactSub:"온라인 이용이 어려운 경우 아래 방법으로 납부 안내를 받을 수 있습니다.",
+phoneTitle:"전화 납부안내",phoneOrg:"한국도로공사서비스 서부권역본부",phoneHours:"평일 09:00 ~ 18:00",
+accountText:"차량번호로 미납내역을 확인한 후 납부계좌를 문자로 별도 안내해드립니다.",phoneSelect:"전화번호 선택하기",
+interpretTitle:"외국어 전화통역",interpretText:"한국어 전화상담이 어려운 경우 외국어 전화통역 서비스를 이용할 수 있습니다.",callBbb:"1588-5644 전화하기",
+officeTitle:"한국도로공사가 운영하는 가까운 영업소 방문",officeText:"온라인 이용이 어렵거나 미납 발생 일시·이용구간 등 상세 확인이 필요한 경우 가까운 영업소를 방문하세요.",
+chatTitle:"챗봇 상담",chatStatus:"준비 중",prepTitle:"상담 전 준비사항",prep1t:"차량번호",prep1b:"상담 시 차량번호를 알려주세요.",
+prep2t:"미납 안내문·고지서·문자",prep2b:"받은 안내가 있는 경우 함께 준비하면 상담이 편리합니다.",prep3t:"문자를 받을 수 있는 휴대전화",prep3b:"납부계좌 안내 문자를 받을 수 있는 휴대전화를 준비하세요.",
+faqTitle:"유의사항 / FAQ",faqSub:"미납통행료와 관련해 알아둘 내용을 확인하세요.",
+n1t:"반복 미납 시 부가통행료 ×10",n1b:"최근 1년간 미납이 20회 이상 발생하면 20회째 미납 건부터 통행료의 10배에 해당하는 부가통행료가 부과될 수 있습니다.",
+n2t:"장기 체납 시 조치 가능",n2b:"장기 체납 시 차량 강제인도·공매, 재산 압류, 형사고발 등의 조치가 진행될 수 있습니다.",
+n3t:"미납 발생 일시·이용구간 확인",n3b:"하이패스 홈페이지를 이용하거나 한국도로공사가 운영하는 가까운 영업소에서 확인하세요.",
+q1:"미납통행료는 어떻게 조회하나요?",a1:"메인 메뉴의 ‘온라인 조회·납부’를 선택한 뒤 화면 안내를 따라 하이패스 홈페이지에서 차량번호로 조회하세요.",
+q2:"전화로 납부안내를 받으려면 어떻게 하나요?",a2:"평일 09:00~18:00에 031-361-3021~3026으로 전화하면 미납내역 확인 후 납부계좌를 문자로 안내해드립니다.",
+q3:"하이패스 홈페이지가 한국어로 나오면 어떻게 하나요?",a3:"메인 메뉴의 ‘스마트폰 번역방법’을 참고하여 브라우저 번역 기능을 이용하세요.",
+q4:"한국어 전화상담이 어렵습니다.",a4:"bbb Korea 1588-5644의 외국어 전화통역 서비스를 이용할 수 있습니다.",backMenu:"메인 메뉴로",
+footerText:"외국인을 위한 미납통행료 조회·납부 안내"
 },
 en:{
-  pageTitle:"Hi-Pass Website & Phone Payment Guide for Foreigners",
-  languageTitle:"Select your language",languageSub:"The guide will be displayed in the selected language.",
-  menuTitle:"How can we help?",menuSub:"Choose the information you need.",
-  menuGuideTitle:"How to use the Hi-Pass website",menuGuideSub:"Follow the screens to check and pay unpaid tolls.",
-  menuContactTitle:"Consultation & support",menuContactSub:"Phone payment support, toll-office visits and interpretation.",
-  menuFaqTitle:"Important information / FAQ",menuFaqSub:"Check additional toll rules and common questions.",
-  guideTitle:"How to use the Hi-Pass website",guideSub:"Basic steps to check and pay unpaid expressway tolls on the official website.",
-  guideFlowTitle:"Unpaid toll lookup and payment",
-  g1t:"Enter vehicle number",g1b:"Enter the vehicle number without spaces.",
-  g2t:"Select Search",g2b:"Tap the search icon or the Search button.",
-  g3t:"If an unpaid toll is found",g3b:"Follow the official website instructions to complete identity verification.",
-  g4t:"Review and pay",g4b:"Check the unpaid toll details and choose an available payment method.",
-  shot1:"① Find the vehicle-number field on the Hi-Pass home screen.",
-  shot2:"② You can also search by vehicle number on the non-member unpaid toll page.",
-  detailTip:"To check details such as the date or road section, use the Hi-Pass website or visit a nearby toll office operated by Korea Expressway Corporation.",
-  officialBtn:"Open the Hi-Pass website ↗",translateBtn:"How to auto-translate on a smartphone",backMenu:"Back to main menu",backGuide:"Back to website guide",
-  translateTitle:"Smartphone auto-translation",translateSub:"If the Hi-Pass website appears in Korean, use your browser's translation function.",
-  chromeNote:"The screens below are based on Android Chrome. Menu locations may differ by phone and browser version.",
-  tr1t:"Open the Chrome menu",tr1b:"Tap the ⋮ menu in the upper-right corner.",
-  tr2t:"Select Translate",tr2b:"Choose the translation function from the menu.",
-  tr3t:"Select your language",tr3b:"Choose your language to translate the page.",
-  contactTitle:"Consultation & support",contactSub:"Use these options if online use is difficult or you need phone-payment guidance.",
-  phoneTitle:"Phone payment consultation",phoneOrg:"Korea Expressway Service Western Regional Headquarters",phoneHours:"Weekdays 09:00–18:00",
-  accountNote:"After the unpaid toll is checked using your vehicle number, the payment account number will be sent separately by text message.",showNumbers:"Choose a phone number",
-  officeTitle:"Visit a nearby toll office operated by Korea Expressway Corporation",officeBody:"Visit a nearby toll office if online use is difficult or you need detailed information such as the date or road section.",
-  interpretTitle:"Foreign-language phone interpretation",interpretBody:"If Korean-language consultation is difficult, bbb Korea provides phone interpretation in 20 languages.",callInterpreter:"Call 1588-5644",
-  chatTitle:"Chatbot consultation",chatStatus:"Coming soon",
-  prepTitle:"Before calling",prep1t:"Vehicle number",prep1b:"Tell the counselor your vehicle number.",
-  prep2t:"Any unpaid-toll notice, bill or text",prep2b:"If you received a notice, having it ready can make the consultation easier.",
-  prep3t:"A phone that can receive text messages",prep3b:"Prepare a phone that can receive the payment-account text message.",
-  faqTitle:"Important information / FAQ",faqSub:"Things to know about unpaid expressway tolls.",
-  warn1t:"Repeated non-payment may result in an additional toll ×10",warn1b:"If unpaid tolls occur 20 or more times within the most recent year, an additional toll equal to 10 times the original toll may be imposed starting with the 20th unpaid case.",
-  warn2t:"Long-term arrears may lead to legal measures",warn2b:"Long-term arrears may result in compulsory vehicle surrender and auction, property seizure, criminal complaint or other measures.",
-  q1:"How do I check unpaid tolls?",a1:"Enter your vehicle number on the Hi-Pass website. See ‘How to use the Hi-Pass website’ in the main menu.",
-  q2:"How do I pay by phone?",a2:"Call Korea Expressway Service Western Regional Headquarters at 031-361-3021~3026 on weekdays from 09:00 to 18:00. After your unpaid toll is checked, a payment account will be sent by text.",
-  q3:"What if the Hi-Pass website is in Korean?",a3:"Use your smartphone browser's auto-translation function. Follow the screens under ‘Smartphone auto-translation’ on this page.",
-  q4:"Can I pay at a convenience store?",a4:"Convenience-store payment may be restricted depending on the type of notice and payment deadline. Check the notice or ask by phone or at a toll office.",
-  q5:"How can I check the date or road section of an unpaid toll?",a5:"Use the Hi-Pass website or visit a nearby toll office operated by Korea Expressway Corporation.",
-  q6:"I cannot easily speak Korean on the phone.",a6:"You can use bbb Korea's foreign-language phone interpretation service at 1588-5644.",
-  footerText:"Hi-Pass Website & Phone Payment Guide for Foreigners"
+mainTitle:"Unpaid Expressway Toll Inquiry & Payment Guide",mainSub:"How to use the Hi-Pass website and where to get payment assistance.",
+onlineTitle:"Online inquiry & payment",onlineSub:"Check and pay unpaid expressway tolls directly on the Hi-Pass website.",
+contactMenuTitle:"Payment assistance contacts",contactMenuSub:"Phone guidance, interpretation and nearby toll-office information.",
+translateMenuTitle:"Smartphone translation",translateMenuSub:"Translate the Korean Hi-Pass website into your language.",
+faqMenuTitle:"Important information / FAQ",faqMenuSub:"Additional toll information and common questions.",
+guideTitle:"Online inquiry & payment",guideSub:"Follow the actual screens of the official Hi-Pass website.",stepsTitle:"Inquiry & payment steps",
+s1t:"Open the Hi-Pass website",s1b:"Use the button below to open the official site.",s2t:"Enter vehicle number",s2b:"Enter the vehicle number without spaces.",
+s3t:"Select Search",s3b:"Tap the search icon or Search button.",s4t:"Check unpaid toll details",s4b:"Follow the on-screen instructions to review the unpaid toll.",
+s5t:"Continue to payment",s5b:"Choose an available payment method and complete payment.",
+cap1:"① Enter vehicle number → ② Select Search",cap2:"③ Check unpaid toll → ④ Continue according to the website instructions",
+detailTip:"For details such as the date or road section, use the Hi-Pass website or visit a nearby toll office operated by Korea Expressway Corporation.",
+officialBtn:"Open Hi-Pass website ↗",translateBtn:"How to auto-translate the Korean page",
+preventTitle:"Before your next expressway trip",p1:"Check that the Hi-Pass device is installed",p2:"Check that the Hi-Pass card is inserted",p3:"Check prepaid-card balance",p4:"Check that the device works normally",
+translateTitle:"Smartphone auto-translation",translateSub:"If the Hi-Pass website appears in Korean, use your browser's translation function.",
+chromeNote:"The screens below are based on Android Chrome. Menu locations may differ by phone and browser version.",
+tr1t:"Open browser menu",tr1b:"Tap the ⋮ menu in the upper-right corner.",tr2t:"Select Translate",tr2b:"Choose the translation function from the menu.",tr3t:"Select your language",tr3b:"Choose your language to translate the page.",
+backGuide:"Back to online inquiry",contactTitle:"Payment assistance contacts",contactSub:"If online use is difficult, use the options below for payment guidance.",
+phoneTitle:"Phone payment guidance",phoneOrg:"Korea Expressway Service Western Regional Headquarters",phoneHours:"Weekdays 09:00–18:00",
+accountText:"After the unpaid toll is checked using your vehicle number, the payment account number will be sent separately by text message.",phoneSelect:"Choose a phone number",
+interpretTitle:"Foreign-language phone interpretation",interpretText:"If consultation in Korean is difficult, you can use a foreign-language phone interpretation service.",callBbb:"Call 1588-5644",
+officeTitle:"Visit a nearby toll office operated by Korea Expressway Corporation",officeText:"Visit a nearby toll office if online use is difficult or you need details such as the date or road section.",
+chatTitle:"Chatbot consultation",chatStatus:"Coming soon",prepTitle:"Before calling",prep1t:"Vehicle number",prep1b:"Tell the counselor your vehicle number.",
+prep2t:"Any unpaid-toll notice, bill or text",prep2b:"If you received a notice, having it ready can make consultation easier.",prep3t:"A phone that can receive text messages",prep3b:"Prepare a phone that can receive the payment-account text message.",
+faqTitle:"Important information / FAQ",faqSub:"Important information about unpaid expressway tolls.",
+n1t:"Repeated non-payment may result in an additional toll ×10",n1b:"If unpaid tolls occur 20 or more times within the most recent year, an additional toll equal to 10 times the original toll may be imposed starting with the 20th unpaid case.",
+n2t:"Long-term arrears may lead to enforcement",n2b:"Long-term arrears may result in compulsory vehicle surrender and auction, property seizure, criminal complaint or other measures.",
+n3t:"Checking date and road section",n3b:"Use the Hi-Pass website or visit a nearby toll office operated by Korea Expressway Corporation.",
+q1:"How do I check unpaid tolls?",a1:"Choose ‘Online inquiry & payment’ and follow the guide to search by vehicle number on the Hi-Pass website.",
+q2:"How do I get payment guidance by phone?",a2:"Call 031-361-3021~3026 on weekdays from 09:00 to 18:00. After the unpaid toll is checked, the payment account will be sent by text.",
+q3:"What if the Hi-Pass website is in Korean?",a3:"Use the ‘Smartphone translation’ guide in the main menu and your browser's translation function.",
+q4:"I cannot easily consult in Korean.",a4:"You can use bbb Korea's foreign-language phone interpretation service at 1588-5644.",backMenu:"Back to main menu",
+footerText:"Unpaid Expressway Toll Inquiry & Payment Guide"
 },
 vi:{
-  pageTitle:"Hướng dẫn sử dụng trang Hi-Pass và thanh toán qua điện thoại cho người nước ngoài",
-  languageTitle:"Chọn ngôn ngữ",languageSub:"Nội dung sẽ hiển thị bằng ngôn ngữ bạn chọn.",
-  menuTitle:"Bạn cần hỗ trợ gì?",menuSub:"Chọn nội dung bạn muốn xem.",
-  menuGuideTitle:"Cách sử dụng trang Hi-Pass",menuGuideSub:"Hướng dẫn theo màn hình để tra cứu và thanh toán phí chưa nộp.",
-  menuContactTitle:"Tư vấn và liên hệ",menuContactSub:"Tư vấn thanh toán qua điện thoại, quầy thu phí và thông dịch.",
-  menuFaqTitle:"Lưu ý / FAQ",menuFaqSub:"Xem quy định phí bổ sung và câu hỏi thường gặp.",
-  guideTitle:"Cách sử dụng trang Hi-Pass",guideSub:"Các bước cơ bản để tra cứu và thanh toán phí đường cao tốc chưa nộp trên trang chính thức.",
-  guideFlowTitle:"Tra cứu và thanh toán phí chưa nộp",
-  g1t:"Nhập biển số xe",g1b:"Nhập biển số xe không có khoảng trắng.",
-  g2t:"Chọn Tra cứu",g2b:"Nhấn biểu tượng tìm kiếm hoặc nút Tra cứu.",
-  g3t:"Nếu có phí chưa nộp",g3b:"Làm theo hướng dẫn trên trang chính thức để xác minh danh tính.",
-  g4t:"Kiểm tra và thanh toán",g4b:"Kiểm tra chi tiết phí chưa nộp và chọn phương thức thanh toán có sẵn.",
-  shot1:"① Tìm ô nhập biển số xe trên màn hình chính Hi-Pass.",
-  shot2:"② Trang tra cứu dành cho người không phải hội viên cũng cho phép tra cứu bằng biển số xe.",
-  detailTip:"Để kiểm tra ngày phát sinh hoặc đoạn đường đã sử dụng, hãy dùng trang Hi-Pass hoặc đến quầy thu phí gần nhất do Korea Expressway Corporation vận hành.",
-  officialBtn:"Mở trang Hi-Pass ↗",translateBtn:"Cách tự động dịch trên điện thoại",backMenu:"Về menu chính",backGuide:"Quay lại hướng dẫn",
-  translateTitle:"Tự động dịch trên điện thoại",translateSub:"Nếu trang Hi-Pass hiển thị bằng tiếng Hàn, hãy dùng chức năng dịch của trình duyệt.",
-  chromeNote:"Các hình dưới đây dựa trên Android Chrome. Vị trí menu có thể khác tùy điện thoại và phiên bản trình duyệt.",
-  tr1t:"Mở menu Chrome",tr1b:"Nhấn menu ⋮ ở góc trên bên phải.",
-  tr2t:"Chọn Dịch",tr2b:"Chọn chức năng dịch trong menu.",
-  tr3t:"Chọn ngôn ngữ",tr3b:"Chọn ngôn ngữ mong muốn để dịch trang.",
-  contactTitle:"Tư vấn và liên hệ",contactSub:"Sử dụng các phương án dưới đây khi khó thao tác trực tuyến hoặc cần hướng dẫn thanh toán qua điện thoại.",
-  phoneTitle:"Tư vấn thanh toán qua điện thoại",phoneOrg:"Korea Expressway Service – Trụ sở khu vực phía Tây",phoneHours:"Ngày thường 09:00–18:00",
-  accountNote:"Sau khi kiểm tra phí chưa nộp bằng biển số xe, số tài khoản thanh toán sẽ được gửi riêng qua tin nhắn.",showNumbers:"Chọn số điện thoại",
-  officeTitle:"Đến quầy thu phí gần nhất do Korea Expressway Corporation vận hành",officeBody:"Hãy đến quầy thu phí gần nhất nếu khó sử dụng trực tuyến hoặc cần kiểm tra chi tiết ngày phát sinh, đoạn đường sử dụng.",
-  interpretTitle:"Thông dịch qua điện thoại",interpretBody:"Nếu khó tư vấn bằng tiếng Hàn, bbb Korea cung cấp thông dịch qua điện thoại bằng 20 ngôn ngữ.",callInterpreter:"Gọi 1588-5644",
-  chatTitle:"Tư vấn chatbot",chatStatus:"Đang chuẩn bị",
-  prepTitle:"Chuẩn bị trước khi tư vấn",prep1t:"Biển số xe",prep1b:"Hãy cung cấp biển số xe khi tư vấn.",
-  prep2t:"Giấy/thông báo/tin nhắn phí chưa nộp",prep2b:"Nếu đã nhận thông báo, hãy chuẩn bị để việc tư vấn thuận tiện hơn.",
-  prep3t:"Điện thoại có thể nhận SMS",prep3b:"Chuẩn bị điện thoại có thể nhận tin nhắn số tài khoản thanh toán.",
-  faqTitle:"Lưu ý / FAQ",faqSub:"Thông tin cần biết về phí đường cao tốc chưa nộp.",
-  warn1t:"Không thanh toán nhiều lần có thể bị tính phí bổ sung ×10",warn1b:"Nếu trong 1 năm gần nhất phát sinh từ 20 lần chưa thanh toán trở lên, từ lần thứ 20 có thể bị tính phí bổ sung bằng 10 lần phí ban đầu.",
-  warn2t:"Nợ kéo dài có thể dẫn đến biện pháp pháp lý",warn2b:"Nợ kéo dài có thể dẫn đến bàn giao bắt buộc và bán đấu giá xe, kê biên tài sản, tố cáo hình sự hoặc các biện pháp khác.",
-  q1:"Làm thế nào để tra cứu phí chưa nộp?",a1:"Nhập biển số xe trên trang Hi-Pass. Xem mục ‘Cách sử dụng trang Hi-Pass’ ở menu chính.",
-  q2:"Làm thế nào để thanh toán qua điện thoại?",a2:"Gọi 031-361-3021~3026 vào ngày thường 09:00–18:00. Sau khi kiểm tra khoản phí chưa nộp, số tài khoản thanh toán sẽ được gửi qua tin nhắn.",
-  q3:"Nếu trang Hi-Pass chỉ hiển thị tiếng Hàn thì sao?",a3:"Dùng chức năng tự động dịch của trình duyệt. Xem mục ‘Tự động dịch trên điện thoại’.",
-  q4:"Có thể thanh toán tại cửa hàng tiện lợi không?",a4:"Việc thanh toán có thể bị hạn chế tùy loại thông báo và hạn thanh toán. Hãy kiểm tra thông báo hoặc hỏi qua điện thoại/quầy thu phí.",
-  q5:"Làm thế nào kiểm tra ngày phát sinh hoặc đoạn đường?",a5:"Dùng trang Hi-Pass hoặc đến quầy thu phí gần nhất do Korea Expressway Corporation vận hành.",
-  q6:"Tôi khó tư vấn bằng tiếng Hàn qua điện thoại.",a6:"Có thể dùng dịch vụ thông dịch qua điện thoại bbb Korea theo số 1588-5644.",
-  footerText:"Hướng dẫn sử dụng Hi-Pass và thanh toán qua điện thoại cho người nước ngoài"
+mainTitle:"Hướng dẫn tra cứu & thanh toán phí cao tốc chưa nộp",mainSub:"Hướng dẫn sử dụng trang Hi-Pass và thông tin hỗ trợ thanh toán.",
+onlineTitle:"Tra cứu & thanh toán trực tuyến",onlineSub:"Kiểm tra và thanh toán phí chưa nộp trực tiếp trên trang Hi-Pass.",
+contactMenuTitle:"Thông tin hỗ trợ thanh toán",contactMenuSub:"Hướng dẫn qua điện thoại, thông dịch và quầy thu phí gần nhất.",
+translateMenuTitle:"Dịch trên điện thoại",translateMenuSub:"Dịch trang Hi-Pass tiếng Hàn sang ngôn ngữ của bạn.",
+faqMenuTitle:"Lưu ý / FAQ",faqMenuSub:"Thông tin phí bổ sung và câu hỏi thường gặp.",
+guideTitle:"Tra cứu & thanh toán trực tuyến",guideSub:"Làm theo màn hình thực tế của trang Hi-Pass chính thức.",stepsTitle:"Các bước tra cứu & thanh toán",
+s1t:"Mở trang Hi-Pass",s1b:"Nhấn nút bên dưới để mở trang chính thức.",s2t:"Nhập biển số xe",s2b:"Nhập biển số xe không có khoảng trắng.",
+s3t:"Chọn Tra cứu",s3b:"Nhấn biểu tượng tìm kiếm hoặc nút Tra cứu.",s4t:"Kiểm tra phí chưa nộp",s4b:"Làm theo hướng dẫn trên màn hình để xem chi tiết.",
+s5t:"Tiến hành thanh toán",s5b:"Chọn phương thức thanh toán có sẵn và hoàn tất.",
+cap1:"① Nhập biển số xe → ② Chọn Tra cứu",cap2:"③ Kiểm tra phí chưa nộp → ④ Tiếp tục theo hướng dẫn trên trang",
+detailTip:"Để kiểm tra ngày phát sinh hoặc đoạn đường, hãy dùng trang Hi-Pass hoặc đến quầy thu phí gần nhất do Korea Expressway Corporation vận hành.",
+officialBtn:"Mở trang Hi-Pass ↗",translateBtn:"Cách tự động dịch trang tiếng Hàn",
+preventTitle:"Kiểm tra trước lần đi cao tốc tiếp theo",p1:"Thiết bị Hi-Pass đã được lắp",p2:"Thẻ Hi-Pass đã được cắm",p3:"Kiểm tra số dư thẻ trả trước",p4:"Thiết bị hoạt động bình thường",
+translateTitle:"Tự động dịch trên điện thoại",translateSub:"Nếu trang Hi-Pass hiển thị tiếng Hàn, hãy dùng chức năng dịch của trình duyệt.",
+chromeNote:"Các màn hình dưới đây dựa trên Android Chrome. Vị trí menu có thể khác tùy thiết bị và phiên bản.",
+tr1t:"Mở menu trình duyệt",tr1b:"Nhấn menu ⋮ ở góc trên bên phải.",tr2t:"Chọn Dịch",tr2b:"Chọn chức năng dịch trong menu.",tr3t:"Chọn ngôn ngữ",tr3b:"Chọn ngôn ngữ mong muốn để dịch trang.",
+backGuide:"Về tra cứu trực tuyến",contactTitle:"Thông tin hỗ trợ thanh toán",contactSub:"Nếu khó sử dụng trực tuyến, hãy dùng các phương án dưới đây.",
+phoneTitle:"Hướng dẫn thanh toán qua điện thoại",phoneOrg:"Korea Expressway Service – Trụ sở khu vực phía Tây",phoneHours:"Ngày thường 09:00–18:00",
+accountText:"Sau khi kiểm tra phí chưa nộp bằng biển số xe, số tài khoản thanh toán sẽ được gửi riêng qua tin nhắn.",phoneSelect:"Chọn số điện thoại",
+interpretTitle:"Thông dịch qua điện thoại",interpretText:"Nếu khó tư vấn bằng tiếng Hàn, có thể sử dụng dịch vụ thông dịch qua điện thoại.",callBbb:"Gọi 1588-5644",
+officeTitle:"Đến quầy thu phí gần nhất do Korea Expressway Corporation vận hành",officeText:"Hãy đến quầy thu phí nếu khó sử dụng trực tuyến hoặc cần kiểm tra ngày/đoạn đường.",
+chatTitle:"Tư vấn chatbot",chatStatus:"Đang chuẩn bị",prepTitle:"Chuẩn bị trước khi tư vấn",prep1t:"Biển số xe",prep1b:"Cung cấp biển số xe khi tư vấn.",
+prep2t:"Thông báo, hóa đơn hoặc SMS",prep2b:"Nếu đã nhận thông báo, hãy chuẩn bị để tư vấn thuận tiện hơn.",prep3t:"Điện thoại có thể nhận SMS",prep3b:"Chuẩn bị điện thoại có thể nhận tin nhắn số tài khoản thanh toán.",
+faqTitle:"Lưu ý / FAQ",faqSub:"Thông tin quan trọng về phí cao tốc chưa nộp.",
+n1t:"Không thanh toán nhiều lần có thể bị tính phí bổ sung ×10",n1b:"Nếu trong 1 năm gần nhất phát sinh từ 20 lần chưa thanh toán trở lên, từ lần thứ 20 có thể bị tính phí bổ sung bằng 10 lần phí ban đầu.",
+n2t:"Nợ kéo dài có thể bị xử lý",n2b:"Có thể áp dụng bàn giao bắt buộc và bán đấu giá xe, kê biên tài sản, tố cáo hình sự hoặc biện pháp khác.",
+n3t:"Kiểm tra ngày và đoạn đường",n3b:"Sử dụng trang Hi-Pass hoặc đến quầy thu phí gần nhất do Korea Expressway Corporation vận hành.",
+q1:"Làm thế nào để tra cứu phí chưa nộp?",a1:"Chọn ‘Tra cứu & thanh toán trực tuyến’ rồi làm theo hướng dẫn để tra cứu bằng biển số xe.",
+q2:"Làm thế nào để nhận hướng dẫn thanh toán qua điện thoại?",a2:"Gọi 031-361-3021~3026 vào ngày thường 09:00–18:00. Sau khi kiểm tra, số tài khoản thanh toán sẽ được gửi qua SMS.",
+q3:"Nếu trang Hi-Pass bằng tiếng Hàn thì sao?",a3:"Sử dụng mục ‘Dịch trên điện thoại’ và chức năng dịch của trình duyệt.",
+q4:"Tôi khó tư vấn bằng tiếng Hàn.",a4:"Có thể sử dụng dịch vụ thông dịch qua điện thoại bbb Korea theo số 1588-5644.",backMenu:"Về menu chính",
+footerText:"Hướng dẫn tra cứu & thanh toán phí cao tốc chưa nộp"
 },
 zh:{
-  pageTitle:"面向外国人的 Hi-Pass 网站使用及电话缴费指南",
-  languageTitle:"请选择语言",languageSub:"指南将以您选择的语言显示。",
-  menuTitle:"需要什么帮助？",menuSub:"请选择所需菜单。",
-  menuGuideTitle:"Hi-Pass 网站使用方法",menuGuideSub:"按照画面说明查询并缴纳欠费。",
-  menuContactTitle:"咨询与联系",menuContactSub:"电话缴费咨询、收费站访问及外语翻译。",
-  menuFaqTitle:"注意事项 / FAQ",menuFaqSub:"查看附加通行费规定及常见问题。",
-  guideTitle:"Hi-Pass 网站使用方法",guideSub:"在官方 Hi-Pass 网站查询并缴纳高速公路欠费的基本步骤。",
-  guideFlowTitle:"欠费查询及缴纳步骤",
-  g1t:"输入车牌号码",g1b:"输入车牌号码时不要留空格。",
-  g2t:"选择查询",g2b:"点击搜索图标或“查询”按钮。",
-  g3t:"如有欠费",g3b:"按照官方网站的提示完成身份认证。",
-  g4t:"确认欠费后缴纳",g4b:"确认欠费明细并选择可用的缴费方式。",
-  shot1:"① 在 Hi-Pass 首页找到车牌号码输入框。",
-  shot2:"② 非会员欠费查询页面也可以通过车牌号码查询。",
-  detailTip:"如需确认欠费发生日期或行驶区间等详细信息，请使用 Hi-Pass 网站，或前往韩国道路公社运营的附近收费站。",
-  officialBtn:"前往 Hi-Pass 网站 ↗",translateBtn:"查看手机自动翻译方法",backMenu:"返回主菜单",backGuide:"返回网站使用方法",
-  translateTitle:"手机自动翻译方法",translateSub:"如果 Hi-Pass 网站显示韩语，请使用浏览器的翻译功能。",
-  chromeNote:"以下画面以 Android Chrome 为例。不同手机和浏览器版本的菜单位置可能不同。",
-  tr1t:"打开 Chrome 菜单",tr1b:"点击右上角的 ⋮ 菜单。",
-  tr2t:"选择“翻译”",tr2b:"在菜单中选择翻译功能。",
-  tr3t:"选择所需语言",tr3b:"选择语言后页面将被翻译。",
-  contactTitle:"咨询与联系",contactSub:"如果在线操作困难或需要电话缴费指导，请使用以下方式。",
-  phoneTitle:"电话缴费咨询",phoneOrg:"Korea Expressway Service 西部区域本部",phoneHours:"工作日 09:00–18:00",
-  accountNote:"通过车牌号码确认欠费后，缴费账户号码将通过短信另行发送。",showNumbers:"选择电话号码",
-  officeTitle:"前往韩国道路公社运营的附近收费站",officeBody:"如在线操作困难，或需要确认欠费日期、行驶区间等详细信息，请前往附近收费站。",
-  interpretTitle:"外语电话翻译",interpretBody:"如韩语电话咨询有困难，可使用 bbb Korea 的20种语言电话翻译服务。",callInterpreter:"拨打 1588-5644",
-  chatTitle:"聊天机器人咨询",chatStatus:"准备中",
-  prepTitle:"咨询前准备",prep1t:"车牌号码",prep1b:"咨询时请提供车牌号码。",
-  prep2t:"欠费通知、缴费单或短信",prep2b:"如果收到过相关通知，准备好后咨询会更方便。",
-  prep3t:"可接收短信的手机",prep3b:"请准备能够接收缴费账户短信的手机。",
-  faqTitle:"注意事项 / FAQ",faqSub:"请确认有关高速公路欠费的重要事项。",
-  warn1t:"反复欠费可能加收 ×10 附加通行费",warn1b:"最近1年内发生20次以上欠费时，从第20次欠费起，可能被加收相当于原通行费10倍的附加通行费。",
-  warn2t:"长期欠费可能采取法律措施",warn2b:"长期欠费可能导致车辆强制交付及拍卖、财产查封、刑事控告等措施。",
-  q1:"如何查询欠费？",a1:"在 Hi-Pass 网站输入车牌号码即可查询。请参考主菜单中的“Hi-Pass 网站使用方法”。",
-  q2:"如何通过电话缴费？",a2:"工作日09:00–18:00拨打031-361-3021~3026。确认欠费后，缴费账户将通过短信发送。",
-  q3:"Hi-Pass 网站只显示韩语怎么办？",a3:"请使用手机浏览器的自动翻译功能，并参考本页面的“手机自动翻译方法”。",
-  q4:"可以在便利店缴费吗？",a4:"是否可在便利店缴费可能因通知单种类和缴费期限而受到限制。请查看通知单，或通过电话/收费站确认。",
-  q5:"如何确认欠费日期或行驶区间？",a5:"请使用 Hi-Pass 网站，或前往韩国道路公社运营的附近收费站。",
-  q6:"我不方便用韩语进行电话咨询。",a6:"可使用 bbb Korea 1588-5644 外语电话翻译服务。",
-  footerText:"面向外国人的 Hi-Pass 网站使用及电话缴费指南"
+mainTitle:"高速公路欠费查询及缴费指南",mainSub:"提供 Hi-Pass 网站使用方法及缴费帮助联系方式。",
+onlineTitle:"在线查询·缴费",onlineSub:"通过 Hi-Pass 网站直接查询并缴纳高速公路欠费。",
+contactMenuTitle:"缴费帮助联系方式",contactMenuSub:"电话指导、外语翻译及附近收费站信息。",
+translateMenuTitle:"手机翻译方法",translateMenuSub:"将韩语 Hi-Pass 网站翻译成您的语言。",
+faqMenuTitle:"注意事项 / FAQ",faqMenuSub:"附加通行费和常见问题。",
+guideTitle:"在线查询·缴费",guideSub:"请按照官方 Hi-Pass 网站的实际画面操作。",stepsTitle:"查询·缴费步骤",
+s1t:"打开 Hi-Pass 网站",s1b:"使用下方按钮打开官方网站。",s2t:"输入车牌号码",s2b:"输入车牌号码时不要留空格。",
+s3t:"选择查询",s3b:"点击搜索图标或“查询”按钮。",s4t:"确认欠费明细",s4b:"按照画面提示确认欠费内容。",
+s5t:"继续缴费",s5b:"选择可用的支付方式并完成缴费。",
+cap1:"① 输入车牌号码 → ② 选择查询",cap2:"③ 确认欠费 → ④ 按网站提示继续",
+detailTip:"如需确认欠费日期或行驶区间，请使用 Hi-Pass 网站，或前往韩国道路公社运营的附近收费站。",
+officialBtn:"前往 Hi-Pass 网站 ↗",translateBtn:"查看韩语页面自动翻译方法",
+preventTitle:"下次使用高速公路前请确认",p1:"是否安装 Hi-Pass 终端",p2:"是否插入 Hi-Pass 卡",p3:"确认预付卡余额",p4:"确认终端正常工作",
+translateTitle:"手机自动翻译方法",translateSub:"如果 Hi-Pass 网站显示韩语，请使用浏览器的翻译功能。",
+chromeNote:"以下画面以 Android Chrome 为例。不同手机和浏览器版本的菜单位置可能不同。",
+tr1t:"打开浏览器菜单",tr1b:"点击右上角 ⋮ 菜单。",tr2t:"选择“翻译”",tr2b:"在菜单中选择翻译功能。",tr3t:"选择语言",tr3b:"选择所需语言即可翻译页面。",
+backGuide:"返回在线查询",contactTitle:"缴费帮助联系方式",contactSub:"如在线操作困难，可通过以下方式获取缴费帮助。",
+phoneTitle:"电话缴费指导",phoneOrg:"Korea Expressway Service 西部区域本部",phoneHours:"工作日 09:00–18:00",
+accountText:"通过车牌号码确认欠费后，缴费账户号码将通过短信另行发送。",phoneSelect:"选择电话号码",
+interpretTitle:"外语电话翻译",interpretText:"如韩语电话咨询有困难，可使用外语电话翻译服务。",callBbb:"拨打 1588-5644",
+officeTitle:"前往韩国道路公社运营的附近收费站",officeText:"如在线操作困难或需要确认欠费日期、行驶区间，请前往附近收费站。",
+chatTitle:"聊天机器人咨询",chatStatus:"准备中",prepTitle:"咨询前准备",prep1t:"车牌号码",prep1b:"咨询时请提供车牌号码。",
+prep2t:"欠费通知、缴费单或短信",prep2b:"如收到相关通知，请准备好以便咨询。",prep3t:"可接收短信的手机",prep3b:"请准备能接收缴费账户短信的手机。",
+faqTitle:"注意事项 / FAQ",faqSub:"高速公路欠费相关重要信息。",
+n1t:"反复欠费可能加收 ×10 附加通行费",n1b:"最近1年内发生20次以上欠费时，从第20次欠费起，可能被加收相当于原通行费10倍的附加通行费。",
+n2t:"长期欠费可能采取措施",n2b:"可能采取车辆强制交付及拍卖、财产查封、刑事控告等措施。",
+n3t:"确认欠费日期及行驶区间",n3b:"请使用 Hi-Pass 网站，或前往韩国道路公社运营的附近收费站。",
+q1:"如何查询欠费？",a1:"选择“在线查询·缴费”，按照画面说明在 Hi-Pass 网站输入车牌号码查询。",
+q2:"如何通过电话获得缴费指导？",a2:"工作日09:00–18:00拨打031-361-3021~3026。确认欠费后，缴费账户将通过短信发送。",
+q3:"Hi-Pass 网站显示韩语怎么办？",a3:"请使用主菜单中的“手机翻译方法”和浏览器翻译功能。",
+q4:"我不方便使用韩语电话咨询。",a4:"可使用 bbb Korea 1588-5644 外语电话翻译服务。",backMenu:"返回主菜单",
+footerText:"高速公路欠费查询及缴费指南"
 },
 ru:{
-  pageTitle:"Инструкция для иностранцев: сайт Hi-Pass и оплата по телефону",
-  languageTitle:"Выберите язык",languageSub:"Информация будет показана на выбранном языке.",
-  menuTitle:"Чем помочь?",menuSub:"Выберите нужный раздел.",
-  menuGuideTitle:"Как пользоваться сайтом Hi-Pass",menuGuideSub:"Пошаговая проверка и оплата неоплаченных сборов.",
-  menuContactTitle:"Консультации и контакты",menuContactSub:"Оплата по телефону, визит в пункт оплаты и перевод.",
-  menuFaqTitle:"Важная информация / FAQ",menuFaqSub:"Дополнительный сбор и часто задаваемые вопросы.",
-  guideTitle:"Как пользоваться сайтом Hi-Pass",guideSub:"Основные шаги для проверки и оплаты неоплаченных дорожных сборов на официальном сайте.",
-  guideFlowTitle:"Проверка и оплата задолженности",
-  g1t:"Введите номер автомобиля",g1b:"Введите номер автомобиля без пробелов.",
-  g2t:"Нажмите «Поиск»",g2b:"Нажмите значок поиска или кнопку поиска.",
-  g3t:"Если есть задолженность",g3b:"Следуйте инструкциям официального сайта для подтверждения личности.",
-  g4t:"Проверьте и оплатите",g4b:"Проверьте данные задолженности и выберите доступный способ оплаты.",
-  shot1:"① Найдите поле номера автомобиля на главной странице Hi-Pass.",
-  shot2:"② На странице для незарегистрированных пользователей также можно выполнить поиск по номеру автомобиля.",
-  detailTip:"Чтобы уточнить дату или участок дороги, используйте сайт Hi-Pass или посетите ближайший пункт оплаты, которым управляет Korea Expressway Corporation.",
-  officialBtn:"Открыть сайт Hi-Pass ↗",translateBtn:"Как включить автоперевод на телефоне",backMenu:"В главное меню",backGuide:"Назад к инструкции",
-  translateTitle:"Автоперевод на смартфоне",translateSub:"Если сайт Hi-Pass отображается на корейском языке, используйте перевод в браузере.",
-  chromeNote:"Ниже показан Android Chrome. Расположение меню может отличаться в зависимости от телефона и версии браузера.",
-  tr1t:"Откройте меню Chrome",tr1b:"Нажмите ⋮ в правом верхнем углу.",
-  tr2t:"Выберите «Перевести»",tr2b:"Выберите функцию перевода в меню.",
-  tr3t:"Выберите язык",tr3b:"После выбора языка страница будет переведена.",
-  contactTitle:"Консультации и контакты",contactSub:"Используйте эти способы, если онлайн-сервис неудобен или нужна помощь с оплатой по телефону.",
-  phoneTitle:"Консультация по оплате по телефону",phoneOrg:"Korea Expressway Service, Западное региональное управление",phoneHours:"Будни 09:00–18:00",
-  accountNote:"После проверки задолженности по номеру автомобиля реквизиты для оплаты будут отдельно отправлены SMS.",showNumbers:"Выбрать номер",
-  officeTitle:"Посетите ближайший пункт оплаты Korea Expressway Corporation",officeBody:"Посетите пункт оплаты, если онлайн-сервис неудобен или нужна подробная информация о дате и участке дороги.",
-  interpretTitle:"Телефонный перевод",interpretBody:"Если консультация на корейском языке затруднена, bbb Korea предоставляет телефонный перевод на 20 языках.",callInterpreter:"Позвонить 1588-5644",
-  chatTitle:"Чат-бот",chatStatus:"Готовится",
-  prepTitle:"Что подготовить",prep1t:"Номер автомобиля",prep1b:"Сообщите номер автомобиля при консультации.",
-  prep2t:"Уведомление, счет или SMS о задолженности",prep2b:"Если у вас есть уведомление, подготовьте его для удобства консультации.",
-  prep3t:"Телефон, принимающий SMS",prep3b:"Подготовьте телефон для получения SMS с реквизитами оплаты.",
-  faqTitle:"Важная информация / FAQ",faqSub:"Что нужно знать о неоплаченных дорожных сборах.",
-  warn1t:"Повторная неоплата может привести к дополнительному сбору ×10",warn1b:"Если в течение последнего года возникло 20 и более случаев неоплаты, начиная с 20-го случая может быть начислен дополнительный сбор в 10-кратном размере.",
-  warn2t:"Длительная задолженность может повлечь правовые меры",warn2b:"Возможны принудительная передача и продажа автомобиля, арест имущества, уголовная жалоба и другие меры.",
-  q1:"Как проверить задолженность?",a1:"Введите номер автомобиля на сайте Hi-Pass. См. раздел «Как пользоваться сайтом Hi-Pass».",
-  q2:"Как оплатить по телефону?",a2:"Позвоните по номеру 031-361-3021~3026 в будни с 09:00 до 18:00. После проверки задолженности реквизиты будут отправлены SMS.",
-  q3:"Что делать, если сайт Hi-Pass только на корейском?",a3:"Используйте автоперевод браузера и раздел «Автоперевод на смартфоне».",
-  q4:"Можно ли оплатить в магазине у дома?",a4:"Возможность оплаты зависит от вида уведомления и срока оплаты. Проверьте уведомление или уточните по телефону/в пункте оплаты.",
-  q5:"Как узнать дату или участок дороги?",a5:"Используйте сайт Hi-Pass или посетите ближайший пункт оплаты Korea Expressway Corporation.",
-  q6:"Мне трудно консультироваться по телефону на корейском.",a6:"Можно воспользоваться телефонным переводом bbb Korea по номеру 1588-5644.",
-  footerText:"Инструкция для иностранцев: сайт Hi-Pass и оплата по телефону"
+mainTitle:"Проверка и оплата неоплаченных дорожных сборов",mainSub:"Инструкция по сайту Hi-Pass и контакты для помощи с оплатой.",
+onlineTitle:"Онлайн-проверка и оплата",onlineSub:"Проверьте и оплатите задолженность непосредственно на сайте Hi-Pass.",
+contactMenuTitle:"Контакты для помощи с оплатой",contactMenuSub:"Телефон, перевод и информация о ближайших пунктах оплаты.",
+translateMenuTitle:"Перевод на смартфоне",translateMenuSub:"Переведите корейский сайт Hi-Pass на свой язык.",
+faqMenuTitle:"Важная информация / FAQ",faqMenuSub:"Дополнительный сбор и частые вопросы.",
+guideTitle:"Онлайн-проверка и оплата",guideSub:"Следуйте фактическим экранам официального сайта Hi-Pass.",stepsTitle:"Порядок проверки и оплаты",
+s1t:"Откройте сайт Hi-Pass",s1b:"Используйте кнопку ниже для перехода на официальный сайт.",s2t:"Введите номер автомобиля",s2b:"Введите номер без пробелов.",
+s3t:"Нажмите поиск",s3b:"Нажмите значок поиска или кнопку поиска.",s4t:"Проверьте задолженность",s4b:"Следуйте указаниям на экране для просмотра деталей.",
+s5t:"Продолжите оплату",s5b:"Выберите доступный способ оплаты и завершите платеж.",
+cap1:"① Введите номер автомобиля → ② Нажмите поиск",cap2:"③ Проверьте задолженность → ④ Следуйте дальнейшим указаниям сайта",
+detailTip:"Чтобы узнать дату или участок дороги, используйте сайт Hi-Pass или посетите ближайший пункт оплаты Korea Expressway Corporation.",
+officialBtn:"Открыть сайт Hi-Pass ↗",translateBtn:"Как автоматически перевести корейскую страницу",
+preventTitle:"Перед следующей поездкой проверьте",p1:"Установлено ли устройство Hi-Pass",p2:"Вставлена ли карта Hi-Pass",p3:"Баланс предоплаченной карты",p4:"Нормально ли работает устройство",
+translateTitle:"Автоперевод на смартфоне",translateSub:"Если сайт Hi-Pass отображается на корейском, используйте перевод в браузере.",
+chromeNote:"Ниже показан Android Chrome. Расположение меню может отличаться в зависимости от телефона и версии браузера.",
+tr1t:"Откройте меню браузера",tr1b:"Нажмите ⋮ в правом верхнем углу.",tr2t:"Выберите «Перевести»",tr2b:"Выберите функцию перевода.",tr3t:"Выберите язык",tr3b:"Выберите нужный язык для перевода страницы.",
+backGuide:"Назад к онлайн-проверке",contactTitle:"Контакты для помощи с оплатой",contactSub:"Если онлайн-сервис неудобен, используйте следующие варианты.",
+phoneTitle:"Телефонная помощь с оплатой",phoneOrg:"Korea Expressway Service, Западное региональное управление",phoneHours:"Будни 09:00–18:00",
+accountText:"После проверки задолженности по номеру автомобиля реквизиты для оплаты будут отдельно отправлены SMS.",phoneSelect:"Выбрать номер",
+interpretTitle:"Телефонный перевод",interpretText:"Если консультация на корейском затруднена, можно воспользоваться телефонным переводом.",callBbb:"Позвонить 1588-5644",
+officeTitle:"Посетите ближайший пункт оплаты Korea Expressway Corporation",officeText:"Посетите пункт оплаты, если онлайн-сервис неудобен или нужна информация о дате/участке дороги.",
+chatTitle:"Чат-бот",chatStatus:"Готовится",prepTitle:"Что подготовить",prep1t:"Номер автомобиля",prep1b:"Сообщите номер автомобиля при консультации.",
+prep2t:"Уведомление, счет или SMS",prep2b:"Если есть уведомление, подготовьте его.",prep3t:"Телефон, принимающий SMS",prep3b:"Подготовьте телефон для получения SMS с реквизитами.",
+faqTitle:"Важная информация / FAQ",faqSub:"Важные сведения о неоплаченных дорожных сборах.",
+n1t:"Повторная неоплата может привести к дополнительному сбору ×10",n1b:"Если в течение последнего года возникло 20 и более случаев неоплаты, начиная с 20-го случая может быть начислен дополнительный сбор в 10-кратном размере.",
+n2t:"Длительная задолженность может привести к мерам взыскания",n2b:"Возможны принудительная передача и продажа автомобиля, арест имущества, уголовная жалоба и другие меры.",
+n3t:"Проверка даты и участка дороги",n3b:"Используйте сайт Hi-Pass или посетите ближайший пункт оплаты Korea Expressway Corporation.",
+q1:"Как проверить задолженность?",a1:"Выберите «Онлайн-проверка и оплата» и следуйте инструкции для поиска по номеру автомобиля.",
+q2:"Как получить помощь с оплатой по телефону?",a2:"Позвоните 031-361-3021~3026 в будни с 09:00 до 18:00. После проверки реквизиты будут отправлены SMS.",
+q3:"Что делать, если сайт Hi-Pass на корейском?",a3:"Используйте раздел «Перевод на смартфоне» и функцию перевода браузера.",
+q4:"Мне трудно консультироваться на корейском.",a4:"Можно воспользоваться телефонным переводом bbb Korea по номеру 1588-5644.",backMenu:"В главное меню",
+footerText:"Проверка и оплата неоплаченных дорожных сборов"
 },
 id:{
-  pageTitle:"Panduan Hi-Pass dan Pembayaran melalui Telepon untuk Warga Asing",
-  languageTitle:"Pilih bahasa",languageSub:"Panduan akan ditampilkan dalam bahasa yang dipilih.",
-  menuTitle:"Apa yang dapat kami bantu?",menuSub:"Pilih informasi yang Anda perlukan.",
-  menuGuideTitle:"Cara menggunakan situs Hi-Pass",menuGuideSub:"Ikuti layar untuk memeriksa dan membayar tol tertunggak.",
-  menuContactTitle:"Konsultasi & kontak",menuContactSub:"Pembayaran melalui telepon, kunjungan gerbang tol, dan penerjemahan.",
-  menuFaqTitle:"Informasi penting / FAQ",menuFaqSub:"Periksa aturan biaya tambahan dan pertanyaan umum.",
-  guideTitle:"Cara menggunakan situs Hi-Pass",guideSub:"Langkah dasar untuk memeriksa dan membayar tol jalan bebas hambatan yang tertunggak di situs resmi.",
-  guideFlowTitle:"Pemeriksaan dan pembayaran tol tertunggak",
-  g1t:"Masukkan nomor kendaraan",g1b:"Masukkan nomor kendaraan tanpa spasi.",
-  g2t:"Pilih Cari",g2b:"Tekan ikon pencarian atau tombol Cari.",
-  g3t:"Jika ada tunggakan",g3b:"Ikuti petunjuk situs resmi untuk verifikasi identitas.",
-  g4t:"Periksa lalu bayar",g4b:"Periksa rincian tunggakan dan pilih metode pembayaran yang tersedia.",
-  shot1:"① Temukan kolom nomor kendaraan pada layar utama Hi-Pass.",
-  shot2:"② Halaman non-anggota juga dapat digunakan untuk mencari dengan nomor kendaraan.",
-  detailTip:"Untuk memeriksa tanggal atau ruas jalan, gunakan situs Hi-Pass atau kunjungi gerbang tol terdekat yang dioperasikan Korea Expressway Corporation.",
-  officialBtn:"Buka situs Hi-Pass ↗",translateBtn:"Cara menerjemahkan otomatis di ponsel",backMenu:"Kembali ke menu utama",backGuide:"Kembali ke panduan",
-  translateTitle:"Terjemahan otomatis di ponsel",translateSub:"Jika situs Hi-Pass muncul dalam bahasa Korea, gunakan fungsi terjemahan browser.",
-  chromeNote:"Layar berikut berdasarkan Android Chrome. Posisi menu dapat berbeda tergantung ponsel dan versi browser.",
-  tr1t:"Buka menu Chrome",tr1b:"Tekan menu ⋮ di kanan atas.",
-  tr2t:"Pilih Terjemahkan",tr2b:"Pilih fungsi terjemahan dari menu.",
-  tr3t:"Pilih bahasa",tr3b:"Pilih bahasa yang diinginkan agar halaman diterjemahkan.",
-  contactTitle:"Konsultasi & kontak",contactSub:"Gunakan pilihan berikut jika layanan online sulit digunakan atau Anda membutuhkan panduan pembayaran melalui telepon.",
-  phoneTitle:"Konsultasi pembayaran melalui telepon",phoneOrg:"Korea Expressway Service – Kantor Regional Barat",phoneHours:"Hari kerja 09:00–18:00",
-  accountNote:"Setelah tunggakan diperiksa menggunakan nomor kendaraan, nomor rekening pembayaran akan dikirim secara terpisah melalui SMS.",showNumbers:"Pilih nomor telepon",
-  officeTitle:"Kunjungi gerbang tol terdekat yang dioperasikan Korea Expressway Corporation",officeBody:"Kunjungi gerbang tol terdekat jika layanan online sulit digunakan atau Anda perlu memeriksa tanggal dan ruas jalan secara lebih rinci.",
-  interpretTitle:"Penerjemahan melalui telepon",interpretBody:"Jika konsultasi dalam bahasa Korea sulit, bbb Korea menyediakan penerjemahan telepon dalam 20 bahasa.",callInterpreter:"Telepon 1588-5644",
-  chatTitle:"Konsultasi chatbot",chatStatus:"Sedang disiapkan",
-  prepTitle:"Persiapan sebelum konsultasi",prep1t:"Nomor kendaraan",prep1b:"Beritahukan nomor kendaraan saat konsultasi.",
-  prep2t:"Pemberitahuan, tagihan, atau SMS tunggakan",prep2b:"Jika Anda menerima pemberitahuan, siapkan agar konsultasi lebih mudah.",
-  prep3t:"Ponsel yang dapat menerima SMS",prep3b:"Siapkan ponsel untuk menerima SMS nomor rekening pembayaran.",
-  faqTitle:"Informasi penting / FAQ",faqSub:"Hal yang perlu diketahui tentang tol tertunggak.",
-  warn1t:"Tunggakan berulang dapat dikenai biaya tambahan ×10",warn1b:"Jika terjadi 20 kali atau lebih tunggakan dalam 1 tahun terakhir, mulai kasus ke-20 dapat dikenakan biaya tambahan sebesar 10 kali tarif awal.",
-  warn2t:"Tunggakan jangka panjang dapat menimbulkan tindakan hukum",warn2b:"Tindakan dapat mencakup penyerahan paksa dan lelang kendaraan, penyitaan aset, pengaduan pidana, dan tindakan lainnya.",
-  q1:"Bagaimana cara memeriksa tol tertunggak?",a1:"Masukkan nomor kendaraan di situs Hi-Pass. Lihat ‘Cara menggunakan situs Hi-Pass’ di menu utama.",
-  q2:"Bagaimana cara membayar melalui telepon?",a2:"Hubungi 031-361-3021~3026 pada hari kerja 09:00–18:00. Setelah tunggakan diperiksa, rekening pembayaran akan dikirim melalui SMS.",
-  q3:"Bagaimana jika situs Hi-Pass hanya berbahasa Korea?",a3:"Gunakan terjemahan otomatis di browser ponsel dan ikuti bagian ‘Terjemahan otomatis di ponsel’.",
-  q4:"Bisakah membayar di minimarket?",a4:"Pembayaran di minimarket dapat dibatasi tergantung jenis pemberitahuan dan batas waktu pembayaran. Periksa pemberitahuan atau tanyakan melalui telepon/gerbang tol.",
-  q5:"Bagaimana cara memeriksa tanggal atau ruas jalan?",a5:"Gunakan situs Hi-Pass atau kunjungi gerbang tol terdekat yang dioperasikan Korea Expressway Corporation.",
-  q6:"Saya sulit berkonsultasi melalui telepon dalam bahasa Korea.",a6:"Gunakan layanan penerjemahan telepon bbb Korea di 1588-5644.",
-  footerText:"Panduan Hi-Pass dan Pembayaran melalui Telepon untuk Warga Asing"
+mainTitle:"Panduan Pemeriksaan & Pembayaran Tol Tertunggak",mainSub:"Cara menggunakan situs Hi-Pass dan kontak bantuan pembayaran.",
+onlineTitle:"Pemeriksaan & pembayaran online",onlineSub:"Periksa dan bayar tol tertunggak langsung di situs Hi-Pass.",
+contactMenuTitle:"Kontak bantuan pembayaran",contactMenuSub:"Panduan telepon, penerjemahan, dan informasi gerbang tol terdekat.",
+translateMenuTitle:"Terjemahan di ponsel",translateMenuSub:"Terjemahkan situs Hi-Pass berbahasa Korea ke bahasa Anda.",
+faqMenuTitle:"Informasi penting / FAQ",faqMenuSub:"Biaya tambahan dan pertanyaan umum.",
+guideTitle:"Pemeriksaan & pembayaran online",guideSub:"Ikuti layar sebenarnya dari situs resmi Hi-Pass.",stepsTitle:"Langkah pemeriksaan & pembayaran",
+s1t:"Buka situs Hi-Pass",s1b:"Gunakan tombol di bawah untuk membuka situs resmi.",s2t:"Masukkan nomor kendaraan",s2b:"Masukkan nomor kendaraan tanpa spasi.",
+s3t:"Pilih Cari",s3b:"Tekan ikon pencarian atau tombol Cari.",s4t:"Periksa tol tertunggak",s4b:"Ikuti petunjuk layar untuk melihat rincian.",
+s5t:"Lanjutkan pembayaran",s5b:"Pilih metode pembayaran yang tersedia dan selesaikan pembayaran.",
+cap1:"① Masukkan nomor kendaraan → ② Pilih Cari",cap2:"③ Periksa tol tertunggak → ④ Lanjutkan sesuai petunjuk situs",
+detailTip:"Untuk melihat tanggal atau ruas jalan, gunakan situs Hi-Pass atau kunjungi gerbang tol terdekat yang dioperasikan Korea Expressway Corporation.",
+officialBtn:"Buka situs Hi-Pass ↗",translateBtn:"Cara menerjemahkan otomatis halaman Korea",
+preventTitle:"Periksa sebelum perjalanan berikutnya",p1:"Perangkat Hi-Pass terpasang",p2:"Kartu Hi-Pass sudah dimasukkan",p3:"Periksa saldo kartu prabayar",p4:"Perangkat berfungsi normal",
+translateTitle:"Terjemahan otomatis di ponsel",translateSub:"Jika situs Hi-Pass tampil dalam bahasa Korea, gunakan fungsi terjemahan browser.",
+chromeNote:"Layar berikut berdasarkan Android Chrome. Posisi menu dapat berbeda tergantung perangkat dan versi browser.",
+tr1t:"Buka menu browser",tr1b:"Tekan menu ⋮ di kanan atas.",tr2t:"Pilih Terjemahkan",tr2b:"Pilih fungsi terjemahan dari menu.",tr3t:"Pilih bahasa",tr3b:"Pilih bahasa yang diinginkan untuk menerjemahkan halaman.",
+backGuide:"Kembali ke pemeriksaan online",contactTitle:"Kontak bantuan pembayaran",contactSub:"Jika layanan online sulit digunakan, gunakan pilihan berikut.",
+phoneTitle:"Panduan pembayaran melalui telepon",phoneOrg:"Korea Expressway Service – Kantor Regional Barat",phoneHours:"Hari kerja 09:00–18:00",
+accountText:"Setelah tunggakan diperiksa menggunakan nomor kendaraan, nomor rekening pembayaran akan dikirim terpisah melalui SMS.",phoneSelect:"Pilih nomor telepon",
+interpretTitle:"Penerjemahan melalui telepon",interpretText:"Jika konsultasi dalam bahasa Korea sulit, gunakan layanan penerjemahan telepon.",callBbb:"Telepon 1588-5644",
+officeTitle:"Kunjungi gerbang tol terdekat yang dioperasikan Korea Expressway Corporation",officeText:"Kunjungi gerbang tol jika layanan online sulit digunakan atau Anda membutuhkan rincian tanggal/ruas jalan.",
+chatTitle:"Konsultasi chatbot",chatStatus:"Sedang disiapkan",prepTitle:"Persiapan sebelum konsultasi",prep1t:"Nomor kendaraan",prep1b:"Beritahukan nomor kendaraan saat konsultasi.",
+prep2t:"Pemberitahuan, tagihan, atau SMS",prep2b:"Jika menerima pemberitahuan, siapkan untuk memudahkan konsultasi.",prep3t:"Ponsel yang dapat menerima SMS",prep3b:"Siapkan ponsel untuk menerima SMS nomor rekening pembayaran.",
+faqTitle:"Informasi penting / FAQ",faqSub:"Informasi penting tentang tol tertunggak.",
+n1t:"Tunggakan berulang dapat dikenai biaya tambahan ×10",n1b:"Jika terjadi 20 kali atau lebih tunggakan dalam 1 tahun terakhir, mulai kasus ke-20 dapat dikenakan biaya tambahan sebesar 10 kali tarif awal.",
+n2t:"Tunggakan jangka panjang dapat dikenai tindakan penagihan",n2b:"Tindakan dapat mencakup penyerahan paksa dan lelang kendaraan, penyitaan aset, pengaduan pidana, dan tindakan lainnya.",
+n3t:"Memeriksa tanggal dan ruas jalan",n3b:"Gunakan situs Hi-Pass atau kunjungi gerbang tol terdekat yang dioperasikan Korea Expressway Corporation.",
+q1:"Bagaimana memeriksa tol tertunggak?",a1:"Pilih ‘Pemeriksaan & pembayaran online’ lalu ikuti panduan untuk mencari dengan nomor kendaraan.",
+q2:"Bagaimana mendapatkan bantuan pembayaran melalui telepon?",a2:"Hubungi 031-361-3021~3026 pada hari kerja 09:00–18:00. Setelah diperiksa, rekening pembayaran akan dikirim melalui SMS.",
+q3:"Bagaimana jika situs Hi-Pass berbahasa Korea?",a3:"Gunakan ‘Terjemahan di ponsel’ dan fungsi terjemahan browser.",
+q4:"Saya sulit berkonsultasi dalam bahasa Korea.",a4:"Gunakan layanan penerjemahan telepon bbb Korea di 1588-5644.",backMenu:"Kembali ke menu utama",
+footerText:"Panduan Pemeriksaan & Pembayaran Tol Tertunggak"
 }
 };
 
-const screens = ["language","menu","guide","translate","contact","faq"];
-let currentLang = "ko";
-let historyStack = ["language"];
+const screens=["language","menu","guide","translate","contact","faq"];
+let lang="ko";
+let stack=["language"];
 
-function t(){ return translations[currentLang] || translations.ko; }
+function tr(){return T[lang]||T.ko}
 
-function applyLanguage(lang){
-  currentLang = translations[lang] ? lang : "ko";
-  document.documentElement.lang = currentLang;
-  document.title = t().pageTitle || translations.ko.pageTitle;
-  document.getElementById("miniLang").value = currentLang;
-  const isKorean = currentLang === "ko";
-  const brandLogo = document.getElementById("brandLogo");
-  const footerLogo = document.getElementById("footerLogo");
-  const hqLabel = document.getElementById("hqLabel");
-  const footerOrg = document.getElementById("footerOrg");
-  if(brandLogo){
-    brandLogo.src = isKorean ? "assets/kec-logo-ko.png" : "assets/kec-logo-en.png";
-    brandLogo.alt = isKorean ? "한국도로공사" : "Korea Expressway Corporation";
-  }
-  if(footerLogo){
-    footerLogo.src = isKorean ? "assets/kec-logo-ko.png" : "assets/kec-logo-en.png";
-    footerLogo.alt = isKorean ? "한국도로공사" : "Korea Expressway Corporation";
-  }
-  if(hqLabel) hqLabel.style.display = isKorean ? "" : "none";
-  if(footerOrg) footerOrg.textContent = isKorean ? "한국도로공사 수도권본부" : "Korea Expressway Corporation";
+function applyLang(v){
+  lang=T[v]?v:"ko";
+  document.documentElement.lang=lang;
+  document.getElementById("miniLang").value=lang;
+  const ko=lang==="ko";
+  document.getElementById("brandLogo").src=ko?"assets/kec-logo-ko.png":"assets/kec-logo-en.png";
+  document.getElementById("brandLogo").alt=ko?"한국도로공사":"Korea Expressway Corporation";
+  document.getElementById("hqLabel").style.display=ko?"":"none";
+  document.getElementById("footerLogo").src=ko?"assets/kec-logo-ko.png":"assets/kec-logo-en.png";
+  document.getElementById("footerOrg").textContent=ko?"한국도로공사 수도권본부":"Korea Expressway Corporation";
   document.querySelectorAll("[data-i18n]").forEach(el=>{
-    const k = el.dataset.i18n;
-    if(t()[k] !== undefined) el.textContent = t()[k];
+    const k=el.dataset.i18n;if(tr()[k]!==undefined)el.textContent=tr()[k];
   });
+  document.title=tr().mainTitle;
 }
 
-function showScreen(name, push=true){
-  if(!screens.includes(name)) name="language";
-  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
+function show(name,push=true){
+  if(!screens.includes(name))name="language";
+  document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));
   document.getElementById("screen-"+name).classList.add("active");
-  if(push && historyStack[historyStack.length-1] !== name) historyStack.push(name);
-  const isLanguage = name==="language";
-  document.getElementById("backBtn").style.visibility = isLanguage ? "hidden" : "visible";
-  document.getElementById("miniLang").style.visibility = isLanguage ? "hidden" : "visible";
+  if(push && stack[stack.length-1]!==name)stack.push(name);
+  const languageScreen=name==="language";
+  document.getElementById("backBtn").style.visibility=languageScreen?"hidden":"visible";
+  document.getElementById("miniLang").style.visibility=languageScreen?"hidden":"visible";
+  document.getElementById("footer").classList.toggle("hidden",languageScreen);
   window.scrollTo({top:0,behavior:"instant"});
-  history.replaceState(null,"","#"+name+"-"+currentLang);
+  history.replaceState(null,"","#"+name+"-"+lang);
 }
 
 document.addEventListener("click",e=>{
-  const go = e.target.closest("[data-go]");
-  if(go){ showScreen(go.dataset.go); }
-  const lb = e.target.closest("[data-lang]");
+  const go=e.target.closest("[data-go]");
+  if(go)show(go.dataset.go);
+  const lb=e.target.closest("[data-lang]");
   if(lb){
-    applyLanguage(lb.dataset.lang);
-    historyStack = ["language","menu"];
-    showScreen("menu",false);
+    applyLang(lb.dataset.lang);
+    stack=["language","menu"];
+    show("menu",false);
   }
 });
-
 document.getElementById("miniLang").addEventListener("change",e=>{
-  applyLanguage(e.target.value);
-  const active = document.querySelector(".screen.active").id.replace("screen-","");
-  history.replaceState(null,"","#"+active+"-"+currentLang);
+  applyLang(e.target.value);
+  const active=document.querySelector(".screen.active").id.replace("screen-","");
+  history.replaceState(null,"","#"+active+"-"+lang);
 });
-
 document.getElementById("backBtn").addEventListener("click",()=>{
-  if(historyStack.length>1){
-    historyStack.pop();
-    showScreen(historyStack[historyStack.length-1],false);
-  }else{
-    showScreen("language",false);
-  }
+  if(stack.length>1){stack.pop();show(stack[stack.length-1],false)}else show("language",false);
 });
-
-document.getElementById("showNumbers").addEventListener("click",()=>{
-  const p = document.getElementById("phoneList");
-  p.style.display = p.style.display==="none" ? "block" : "none";
+document.getElementById("showPhones").addEventListener("click",()=>{
+  const p=document.getElementById("phoneList");
+  p.style.display=p.style.display==="none"?"block":"none";
 });
 
 (function init(){
-  // QR / first visit always starts from language selection.
-  // Ignore old deep links such as #menu-ko so foreign users do not land on Korean first.
-  applyLanguage("ko");
-  historyStack=["language"];
-  showScreen("language",false);
+  // Root URL used in QR: always start with bright language-selection screen.
+  // Deep links remain usable if the user refreshes a selected page.
+  const h=location.hash.replace("#","");
+  const m=h.match(/^(menu|guide|translate|contact|faq)-(ko|en|vi|zh|ru|id)$/);
+  if(m){applyLang(m[2]);stack=["language",m[1]];show(m[1],false)}
+  else{applyLang("ko");stack=["language"];show("language",false)}
 })();
 </script>
 </body>
