@@ -158,6 +158,8 @@ img{max-width:100%;display:block}
 }
 .page-head h2{margin:0;color:var(--navy2);font-size:30px;line-height:1.25;letter-spacing:-.035em}
 .page-head p{margin:9px 0 0;color:var(--muted)}
+.language-head h2{font-size:32px;letter-spacing:-.02em}
+.language-head p{font-size:14px;line-height:1.8;word-break:normal}
 .language-grid{display:grid;gap:11px;margin-top:18px}
 .lang-btn{
   display:flex;align-items:center;gap:13px;width:100%;min-height:62px;
@@ -293,8 +295,8 @@ details[open] summary:after{content:"－"}
 <div class="app">
   <header class="topbar" id="topbar">
     <div class="brand-wrap">
-      <img class="brand-logo" src="assets/kec-logo-ko.png" alt="한국도로공사">
-      <span class="hq">수도권본부</span>
+      <img class="brand-logo" id="brandLogo" src="assets/kec-logo-ko.png" alt="한국도로공사">
+      <span class="hq" id="hqLabel">수도권본부</span>
     </div>
     <div class="header-actions">
       <button class="icon-btn" id="backBtn" aria-label="뒤로" title="뒤로">‹</button>
@@ -309,28 +311,11 @@ details[open] summary:after{content:"－"}
     </div>
   </header>
 
-  <!-- 1. START -->
-  <section class="screen active" id="screen-start">
-    <div class="hero">
-      <div class="hero-inner">
-        <div class="kicker">Korea Expressway Corporation · Capital Region Headquarters</div>
-        <h1 data-i18n="startTitle">외국인을 위한 하이패스 홈페이지 이용 안내 및 전화납부 안내</h1>
-        <p class="hero-sub" data-i18n="startSub">미납통행료 조회·납부 방법과 상담 방법을 6개 언어로 안내합니다.</p>
-        <div class="mascot-stage">
-          <img class="giltongi" src="assets/giltongi.png" alt="길통이">
-          <img class="charo" src="assets/charo-charo.png" alt="차로차로">
-        </div>
-        <button class="start-btn" data-go="language" data-i18n="startBtn">시작하기</button>
-        <p class="start-note" data-i18n="startNote">이 페이지는 이용방법과 상담채널을 안내합니다.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 2. LANGUAGE -->
-  <section class="screen" id="screen-language">
-    <div class="page-head">
-      <h2 data-i18n="languageTitle">언어를 선택하세요</h2>
-      <p data-i18n="languageSub">선택한 언어로 안내 내용을 확인할 수 있습니다.</p>
+  <!-- 1. LANGUAGE -->
+  <section class="screen active" id="screen-language">
+    <div class="page-head language-head">
+      <h2>Select your language</h2>
+      <p>언어 선택 · Chọn ngôn ngữ · 请选择语言 · Выберите язык · Pilih bahasa</p>
     </div>
     <div class="page-pad">
       <div class="language-grid">
@@ -348,7 +333,7 @@ details[open] summary:after{content:"－"}
     </div>
   </section>
 
-  <!-- 3. MENU -->
+  <!-- 2. MENU -->
   <section class="screen" id="screen-menu">
     <div class="page-head">
       <h2 data-i18n="menuTitle">무엇을 도와드릴까요?</h2>
@@ -379,7 +364,7 @@ details[open] summary:after{content:"－"}
     </div>
   </section>
 
-  <!-- 4. GUIDE -->
+  <!-- 3. GUIDE -->
   <section class="screen" id="screen-guide">
     <div class="page-head">
       <h2 data-i18n="guideTitle">하이패스 홈페이지 이용방법</h2>
@@ -416,7 +401,7 @@ details[open] summary:after{content:"－"}
     </div>
   </section>
 
-  <!-- 5. TRANSLATION -->
+  <!-- 4. TRANSLATION -->
   <section class="screen" id="screen-translate">
     <div class="page-head">
       <h2 data-i18n="translateTitle">스마트폰 자동번역 방법</h2>
@@ -445,7 +430,7 @@ details[open] summary:after{content:"－"}
     </div>
   </section>
 
-  <!-- 6. CONTACT -->
+  <!-- 5. CONTACT -->
   <section class="screen" id="screen-contact">
     <div class="page-head">
       <h2 data-i18n="contactTitle">상담 및 문의</h2>
@@ -502,7 +487,7 @@ details[open] summary:after{content:"－"}
     </div>
   </section>
 
-  <!-- 7. FAQ -->
+  <!-- 6. FAQ -->
   <section class="screen" id="screen-faq">
     <div class="page-head">
       <h2 data-i18n="faqTitle">유의사항 / FAQ</h2>
@@ -532,8 +517,8 @@ details[open] summary:after{content:"－"}
   </section>
 
   <footer class="footer">
-    <img src="assets/kec-logo-ko.png" alt="한국도로공사">
-    <strong>한국도로공사 수도권본부</strong>
+    <img id="footerLogo" src="assets/kec-logo-ko.png" alt="한국도로공사">
+    <strong id="footerOrg">한국도로공사 수도권본부</strong>
     <span data-i18n="footerText">외국인을 위한 하이패스 홈페이지 이용 안내 및 전화납부 안내</span>
   </footer>
 </div>
@@ -542,9 +527,6 @@ details[open] summary:after{content:"－"}
 const translations = {
 ko:{
   pageTitle:"외국인을 위한 하이패스 홈페이지 이용 안내 및 전화납부 안내",
-  startTitle:"외국인을 위한 하이패스 홈페이지 이용 안내 및 전화납부 안내",
-  startSub:"미납통행료 조회·납부 방법과 상담 방법을 6개 언어로 안내합니다.",
-  startBtn:"시작하기", startNote:"이 페이지는 이용방법과 상담채널을 안내합니다.",
   languageTitle:"언어를 선택하세요",languageSub:"선택한 언어로 안내 내용을 확인할 수 있습니다.",
   menuTitle:"무엇을 도와드릴까요?",menuSub:"원하는 메뉴를 선택하세요.",
   menuGuideTitle:"하이패스 홈페이지 이용방법",menuGuideSub:"미납통행료 조회·납부 화면을 따라 안내합니다.",
@@ -587,9 +569,6 @@ ko:{
 },
 en:{
   pageTitle:"Hi-Pass Website & Phone Payment Guide for Foreigners",
-  startTitle:"Hi-Pass Website & Phone Payment Guide for Foreigners",
-  startSub:"Guidance on unpaid toll lookup, payment and support is available in six languages.",
-  startBtn:"Start",startNote:"This page explains how to use the service and where to get help.",
   languageTitle:"Select your language",languageSub:"The guide will be displayed in the selected language.",
   menuTitle:"How can we help?",menuSub:"Choose the information you need.",
   menuGuideTitle:"How to use the Hi-Pass website",menuGuideSub:"Follow the screens to check and pay unpaid tolls.",
@@ -632,9 +611,6 @@ en:{
 },
 vi:{
   pageTitle:"Hướng dẫn sử dụng trang Hi-Pass và thanh toán qua điện thoại cho người nước ngoài",
-  startTitle:"Hướng dẫn sử dụng trang Hi-Pass và thanh toán qua điện thoại cho người nước ngoài",
-  startSub:"Hướng dẫn tra cứu, thanh toán phí chưa nộp và tư vấn bằng 6 ngôn ngữ.",
-  startBtn:"Bắt đầu",startNote:"Trang này hướng dẫn cách sử dụng và các kênh hỗ trợ.",
   languageTitle:"Chọn ngôn ngữ",languageSub:"Nội dung sẽ hiển thị bằng ngôn ngữ bạn chọn.",
   menuTitle:"Bạn cần hỗ trợ gì?",menuSub:"Chọn nội dung bạn muốn xem.",
   menuGuideTitle:"Cách sử dụng trang Hi-Pass",menuGuideSub:"Hướng dẫn theo màn hình để tra cứu và thanh toán phí chưa nộp.",
@@ -677,9 +653,6 @@ vi:{
 },
 zh:{
   pageTitle:"面向外国人的 Hi-Pass 网站使用及电话缴费指南",
-  startTitle:"面向外国人的 Hi-Pass 网站使用及电话缴费指南",
-  startSub:"以6种语言提供欠费查询、缴费及咨询方法。",
-  startBtn:"开始",startNote:"本页面提供使用方法和咨询渠道说明。",
   languageTitle:"请选择语言",languageSub:"指南将以您选择的语言显示。",
   menuTitle:"需要什么帮助？",menuSub:"请选择所需菜单。",
   menuGuideTitle:"Hi-Pass 网站使用方法",menuGuideSub:"按照画面说明查询并缴纳欠费。",
@@ -722,9 +695,6 @@ zh:{
 },
 ru:{
   pageTitle:"Инструкция для иностранцев: сайт Hi-Pass и оплата по телефону",
-  startTitle:"Инструкция для иностранцев: сайт Hi-Pass и оплата по телефону",
-  startSub:"Информация о проверке и оплате задолженности и консультациях доступна на 6 языках.",
-  startBtn:"Начать",startNote:"Эта страница объясняет порядок действий и способы получения помощи.",
   languageTitle:"Выберите язык",languageSub:"Информация будет показана на выбранном языке.",
   menuTitle:"Чем помочь?",menuSub:"Выберите нужный раздел.",
   menuGuideTitle:"Как пользоваться сайтом Hi-Pass",menuGuideSub:"Пошаговая проверка и оплата неоплаченных сборов.",
@@ -767,9 +737,6 @@ ru:{
 },
 id:{
   pageTitle:"Panduan Hi-Pass dan Pembayaran melalui Telepon untuk Warga Asing",
-  startTitle:"Panduan Hi-Pass dan Pembayaran melalui Telepon untuk Warga Asing",
-  startSub:"Panduan pemeriksaan, pembayaran tol tertunggak, dan bantuan tersedia dalam 6 bahasa.",
-  startBtn:"Mulai",startNote:"Halaman ini menjelaskan cara penggunaan dan saluran bantuan.",
   languageTitle:"Pilih bahasa",languageSub:"Panduan akan ditampilkan dalam bahasa yang dipilih.",
   menuTitle:"Apa yang dapat kami bantu?",menuSub:"Pilih informasi yang Anda perlukan.",
   menuGuideTitle:"Cara menggunakan situs Hi-Pass",menuGuideSub:"Ikuti layar untuk memeriksa dan membayar tol tertunggak.",
@@ -812,9 +779,9 @@ id:{
 }
 };
 
-const screens = ["start","language","menu","guide","translate","contact","faq"];
+const screens = ["language","menu","guide","translate","contact","faq"];
 let currentLang = "ko";
-let historyStack = ["start"];
+let historyStack = ["language"];
 
 function t(){ return translations[currentLang] || translations.ko; }
 
@@ -823,6 +790,21 @@ function applyLanguage(lang){
   document.documentElement.lang = currentLang;
   document.title = t().pageTitle || translations.ko.pageTitle;
   document.getElementById("miniLang").value = currentLang;
+  const isKorean = currentLang === "ko";
+  const brandLogo = document.getElementById("brandLogo");
+  const footerLogo = document.getElementById("footerLogo");
+  const hqLabel = document.getElementById("hqLabel");
+  const footerOrg = document.getElementById("footerOrg");
+  if(brandLogo){
+    brandLogo.src = isKorean ? "assets/kec-logo-ko.png" : "assets/kec-logo-en.png";
+    brandLogo.alt = isKorean ? "한국도로공사" : "Korea Expressway Corporation";
+  }
+  if(footerLogo){
+    footerLogo.src = isKorean ? "assets/kec-logo-ko.png" : "assets/kec-logo-en.png";
+    footerLogo.alt = isKorean ? "한국도로공사" : "Korea Expressway Corporation";
+  }
+  if(hqLabel) hqLabel.style.display = isKorean ? "" : "none";
+  if(footerOrg) footerOrg.textContent = isKorean ? "한국도로공사 수도권본부" : "Korea Expressway Corporation";
   document.querySelectorAll("[data-i18n]").forEach(el=>{
     const k = el.dataset.i18n;
     if(t()[k] !== undefined) el.textContent = t()[k];
@@ -830,14 +812,13 @@ function applyLanguage(lang){
 }
 
 function showScreen(name, push=true){
-  if(!screens.includes(name)) name="start";
+  if(!screens.includes(name)) name="language";
   document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
   document.getElementById("screen-"+name).classList.add("active");
   if(push && historyStack[historyStack.length-1] !== name) historyStack.push(name);
-  const isStart = name==="start";
   const isLanguage = name==="language";
-  document.getElementById("backBtn").style.visibility = isStart ? "hidden" : "visible";
-  document.getElementById("miniLang").style.visibility = (isStart || isLanguage) ? "hidden" : "visible";
+  document.getElementById("backBtn").style.visibility = isLanguage ? "hidden" : "visible";
+  document.getElementById("miniLang").style.visibility = isLanguage ? "hidden" : "visible";
   window.scrollTo({top:0,behavior:"instant"});
   history.replaceState(null,"","#"+name+"-"+currentLang);
 }
@@ -848,7 +829,7 @@ document.addEventListener("click",e=>{
   const lb = e.target.closest("[data-lang]");
   if(lb){
     applyLanguage(lb.dataset.lang);
-    historyStack = ["start","language","menu"];
+    historyStack = ["language","menu"];
     showScreen("menu",false);
   }
 });
@@ -864,7 +845,7 @@ document.getElementById("backBtn").addEventListener("click",()=>{
     historyStack.pop();
     showScreen(historyStack[historyStack.length-1],false);
   }else{
-    showScreen("start",false);
+    showScreen("language",false);
   }
 });
 
@@ -874,20 +855,11 @@ document.getElementById("showNumbers").addEventListener("click",()=>{
 });
 
 (function init(){
-  const hash = location.hash.replace("#","");
-  const m = hash.match(/^(start|language|menu|guide|translate|contact|faq)-(ko|en|vi|zh|ru|id)$/);
-  if(m){
-    applyLanguage(m[2]);
-    historyStack=["start",m[1]];
-    showScreen(m[1],false);
-  }else if(/^(ko|en|vi|zh|ru|id)$/.test(hash)){
-    applyLanguage(hash);
-    historyStack=["start","language","menu"];
-    showScreen("menu",false);
-  }else{
-    applyLanguage("ko");
-    showScreen("start",false);
-  }
+  // QR / first visit always starts from language selection.
+  // Ignore old deep links such as #menu-ko so foreign users do not land on Korean first.
+  applyLanguage("ko");
+  historyStack=["language"];
+  showScreen("language",false);
 })();
 </script>
 </body>
