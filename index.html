@@ -8,6 +8,7 @@
 <meta name="description" content="외국인을 위한 미납통행료 조회·납부 안내">
 <meta name="robots" content="noindex, nofollow">
 <title>외국인을 위한 미납통행료 조회·납부 안내</title>
+<!-- Version: V4.8 -->
 <link rel="icon" href="assets/favicon.png">
 <style>
 :root{
@@ -67,20 +68,40 @@ button,a,select{font:inherit}button{cursor:pointer}a{color:inherit}img{display:b
 /* Common */
 .section-card{margin-bottom:14px;padding:19px;border:1px solid var(--line);border-radius:19px;background:#fff;box-shadow:0 6px 21px rgba(20,58,90,.05)}
 .section-card h3{margin:0 0 8px;color:var(--navy2);font-size:20px}.section-card p{margin:0;color:var(--muted)}
-.guide-flow{display:grid;gap:14px}
-.guide-item{border:1px solid var(--line);border-radius:19px;overflow:hidden;background:#fff;box-shadow:0 6px 20px rgba(20,58,90,.045)}
-.guide-label{display:flex;align-items:center;gap:10px;padding:13px 14px;background:#f7fbfe;border-bottom:1px solid #e4edf3}
-.guide-num{width:35px;height:35px;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:#fff;font-weight:950}
-.guide-label strong{font-size:17px;color:var(--navy2)}.guide-item img{width:100%;height:auto}
-.guide-caption{padding:11px 14px;color:#596773;font-size:13px}
-.member-note{margin-top:14px;padding:15px;border-radius:16px;background:#fff8eb;border:1px solid #ecd6a4}
-.member-note strong{display:block;color:#80540b;margin-bottom:5px}.member-note p{margin:0;color:#665a46;font-size:13px}
+
+/* V4.8 - connected 3-step Hi-Pass guide */
+.guide-timeline{display:grid;gap:0;margin-top:2px}
+.guide-stage{display:grid;grid-template-columns:58px minmax(0,1fr);position:relative}
+.stage-rail{position:relative;display:flex;justify-content:center;align-items:flex-start;padding-top:14px;background:linear-gradient(180deg,#075eb7,#11459a);border-radius:18px 0 0 18px;min-height:100%}
+.stage-no{width:45px;height:45px;display:grid;place-items:center;color:#fff;font-size:25px;font-weight:950}
+.guide-stage:not(:last-child) .stage-rail:after{content:"";position:absolute;left:50%;bottom:-24px;width:5px;height:33px;background:#1262b6;transform:translateX(-50%);z-index:3}
+.guide-stage:not(:last-child) .stage-rail:before{content:"";position:absolute;left:50%;bottom:-33px;border-left:10px solid transparent;border-right:10px solid transparent;border-top:12px solid #1262b6;transform:translateX(-50%);z-index:4}
+.stage-card{margin:0 0 26px;border:2px solid #9bc8ee;border-left:0;border-radius:0 20px 20px 0;background:#fff;overflow:hidden;box-shadow:0 7px 20px rgba(25,74,117,.055)}
+.stage-inner{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(180px,.8fr);align-items:stretch}
+.stage-visual{padding:15px;background:#f9fcfe;display:flex;align-items:center}
+.stage-visual img{width:100%;height:auto;border-radius:13px;border:1px solid #dce8ef}
+.stage-copy{padding:22px 18px;border-left:1px dashed #bfd7e9;display:flex;flex-direction:column;justify-content:center;min-width:0}
+.stage-copy h3{margin:0 0 10px;color:var(--navy2);font-size:22px;letter-spacing:-.03em;line-height:1.25}
+.stage-copy p{margin:0;color:#4f5d69;font-size:14px;line-height:1.65}
+.stage-copy .mini-mascot{width:62px;height:62px;object-fit:contain;margin:12px 0 0 auto}
+.login-note{margin-top:4px;padding:17px 16px;border:2px solid #73afe1;border-radius:19px;background:linear-gradient(135deg,#eef8ff,#fff);display:grid;grid-template-columns:46px 1fr 72px;gap:12px;align-items:center}
+.login-note .notice-ico{width:42px;height:42px;border-radius:50%;background:#1d5eae;color:#fff;display:grid;place-items:center;font-size:26px;font-weight:950}
+.login-note strong{display:block;color:var(--navy2);font-size:18px;margin-bottom:4px}.login-note p{margin:0;color:#546574;font-size:13px}
+.login-note img{width:70px;height:70px;object-fit:contain}
 .tip{margin-top:13px;padding:13px 14px;border-radius:14px;background:#eef8ff;color:#24577f;border-left:4px solid var(--blue);font-size:13px}
 .prevention{margin-top:14px;padding:16px;border-radius:17px;background:#fffaf0;border:1px solid #f0dfb9}.prevention h3{margin:0 0 10px;color:#7b5510;font-size:18px}
 .checks{display:grid;gap:7px;color:#5c5141;font-size:14px}.checks div:before{content:"✓";color:#d0880e;font-weight:950;margin-right:8px}
 .action{min-height:54px;width:100%;margin-top:13px;padding:11px 14px;border:0;border-radius:14px;display:flex;align-items:center;justify-content:center;gap:7px;text-decoration:none;font-weight:900}
 .action-primary{background:var(--navy);color:#fff}.action-soft{background:#edf6fc;color:var(--navy);border:1px solid #cce0ec}.action-green{background:var(--green);color:#fff}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+@media(max-width:560px){
+  .guide-stage{grid-template-columns:48px minmax(0,1fr)}
+  .stage-rail{border-radius:15px 0 0 15px;padding-top:10px}.stage-no{font-size:22px;width:40px;height:40px}
+  .stage-card{border-radius:0 16px 16px 0;margin-bottom:22px}.stage-inner{grid-template-columns:1fr}
+  .stage-visual{padding:10px}.stage-copy{padding:14px;border-left:0;border-top:1px dashed #bfd7e9}
+  .stage-copy h3{font-size:19px}.stage-copy p{font-size:13px}.stage-copy .mini-mascot{width:52px;height:52px}
+  .login-note{grid-template-columns:40px 1fr 54px;padding:14px 12px}.login-note img{width:52px;height:52px}.login-note strong{font-size:16px}
+}
 
 /* Translation */
 .translate-list{display:grid;gap:12px}.translate-step{display:grid;grid-template-columns:46px 1fr;gap:11px;padding:13px;border:1px solid var(--line);border-radius:17px;background:#fff}
@@ -161,29 +182,36 @@ details{margin-bottom:9px;border:1px solid var(--line);border-radius:14px;backgr
 </section>
 
 <section class="screen" id="screen-guide">
-  <div class="page-head"><h2 data-i18n="guideTitle">하이패스 홈페이지 이용방법</h2><p data-i18n="guideSub">비회원은 첫 화면에서 차량번호로 미납 여부를 간단히 조회할 수 있습니다.</p></div>
+  <div class="page-head"><h2 data-i18n="guideTitle">하이패스 홈페이지 이용방법</h2><p data-i18n="guideSub">비회원도 첫 화면에서 미납 여부를 간단히 조회할 수 있습니다.</p></div>
   <div class="page-pad">
-    <div class="guide-flow">
-      <div class="guide-item">
-        <div class="guide-label"><span class="guide-num">1</span><strong data-i18n="s1t">차량번호 입력</strong></div>
-        <img src="assets/guide-step12.jpg" alt="차량번호 입력 화면">
-        <div class="guide-caption" data-i18n="s1b">하이패스 홈페이지 첫 화면 입력창에 차량번호를 공백 없이 입력합니다.</div>
+    <div class="guide-timeline">
+      <div class="guide-stage">
+        <div class="stage-rail"><span class="stage-no">1</span></div>
+        <div class="stage-card"><div class="stage-inner">
+          <div class="stage-visual"><img src="assets/guide-step1-v48.jpg" alt="차량번호 입력 화면"></div>
+          <div class="stage-copy"><h3 data-i18n="s1t">차량번호 입력</h3><p data-i18n="s1b">첫 화면 입력창에 차량번호를 공백 없이 입력합니다.</p><img class="mini-mascot" src="assets/charo-2d.png" alt="차로차로"></div>
+        </div></div>
       </div>
-      <div class="guide-item">
-        <div class="guide-label"><span class="guide-num">2</span><strong data-i18n="s2t">조회 버튼 선택</strong></div>
-        <img src="assets/guide-step2.jpg" alt="조회 버튼 화면">
-        <div class="guide-caption" data-i18n="s2b">차량번호 입력창 오른쪽의 돋보기 버튼을 누릅니다.</div>
+      <div class="guide-stage">
+        <div class="stage-rail"><span class="stage-no">2</span></div>
+        <div class="stage-card"><div class="stage-inner">
+          <div class="stage-visual"><img src="assets/guide-step2-v48.jpg" alt="조회 버튼 화면"></div>
+          <div class="stage-copy"><h3 data-i18n="s2t">조회 버튼 선택</h3><p data-i18n="s2b">차량번호 입력창 오른쪽의 돋보기 버튼을 눌러 미납 여부를 조회합니다.</p></div>
+        </div></div>
       </div>
-      <div class="guide-item">
-        <div class="guide-label"><span class="guide-num">3</span><strong data-i18n="s3t">미납 결과 확인</strong></div>
-        <img src="assets/guide-step3-example.jpg" alt="미납 결과 예시 화면">
-        <div class="guide-caption" data-i18n="s3b">조회된 미납 건수와 결과를 확인합니다. 화면은 안내용 예시입니다.</div>
+      <div class="guide-stage">
+        <div class="stage-rail"><span class="stage-no">3</span></div>
+        <div class="stage-card"><div class="stage-inner">
+          <div class="stage-visual"><img src="assets/guide-step3-v48.jpg" alt="미납 결과 예시 화면"></div>
+          <div class="stage-copy"><h3 data-i18n="s3t">조회 결과 확인</h3><p data-i18n="s3b">조회된 미납 건수와 금액을 확인합니다. 화면은 개인정보가 포함되지 않은 안내용 예시입니다.</p></div>
+        </div></div>
       </div>
     </div>
 
-    <div class="member-note">
-      <strong data-i18n="memberTitle">상세확인 및 홈페이지 납부 안내</strong>
-      <p data-i18n="memberText">상세확인 및 홈페이지 납부는 회원 로그인 후 이용 가능합니다. 비회원·외국인은 조회 후 납부안내 연락처 또는 가까운 한국도로공사 영업소를 이용할 수 있습니다.</p>
+    <div class="login-note">
+      <div class="notice-ico">!</div>
+      <div><strong data-i18n="memberTitle">상세확인 및 납부는 회원 로그인 후 이용 가능</strong><p data-i18n="memberText">비회원·외국인은 조회 후 납부안내 연락처 또는 가까운 한국도로공사 영업소를 이용할 수 있습니다.</p></div>
+      <img src="assets/charo-2d.png" alt="차로차로">
     </div>
 
     <a class="action action-primary" href="https://www.hipass.co.kr/main.do" target="_blank" rel="noopener noreferrer" data-i18n="officialBtn">하이패스 홈페이지 바로가기 ↗</a>
@@ -285,9 +313,9 @@ mainTitle:"외국인을 위한 미납통행료 조회·납부 안내",mainSub:"�
 guideMenu:"하이패스 홈페이지 이용방법",guideMenuSub:"차량번호 입력부터 미납 결과 확인까지 안내합니다.",
 contactMenuTitle:"납부안내 연락처",contactMenuSub:"전화 안내, 통역, 가까운 영업소 방문 방법입니다.",
 translateMenuTitle:"스마트폰 번역방법",translateMenuSub:"한국어 홈페이지를 원하는 언어로 번역합니다.",faqMenuTitle:"유의사항 / FAQ",faqMenuSub:"부가통행료와 자주 묻는 질문입니다.",
-guideTitle:"하이패스 홈페이지 이용방법",guideSub:"비회원은 첫 화면에서 차량번호로 미납 여부를 간단히 조회할 수 있습니다.",
-s1t:"차량번호 입력",s1b:"하이패스 홈페이지 첫 화면 입력창에 차량번호를 공백 없이 입력합니다.",s2t:"조회 버튼 선택",s2b:"차량번호 입력창 오른쪽의 돋보기 버튼을 누릅니다.",s3t:"미납 결과 확인",s3b:"조회된 미납 건수와 결과를 확인합니다. 화면은 안내용 예시입니다.",
-memberTitle:"상세확인 및 홈페이지 납부 안내",memberText:"상세확인 및 홈페이지 납부는 회원 로그인 후 이용 가능합니다. 비회원·외국인은 조회 후 납부안내 연락처 또는 가까운 한국도로공사 영업소를 이용할 수 있습니다.",
+guideTitle:"하이패스 홈페이지 이용방법",guideSub:"비회원도 첫 화면에서 미납 여부를 간단히 조회할 수 있습니다.",
+s1t:"차량번호 입력",s1b:"첫 화면 입력창에 차량번호를 공백 없이 입력합니다.",s2t:"조회 버튼 선택",s2b:"차량번호 입력창 오른쪽의 돋보기 버튼을 눌러 미납 여부를 조회합니다.",s3t:"조회 결과 확인",s3b:"조회된 미납 건수와 금액을 확인합니다. 화면은 개인정보가 포함되지 않은 안내용 예시입니다.",
+memberTitle:"상세확인 및 납부는 회원 로그인 후 이용 가능",memberText:"비회원·외국인은 조회 후 납부안내 연락처 또는 가까운 한국도로공사 영업소를 이용할 수 있습니다.",
 officialBtn:"하이패스 홈페이지 바로가기 ↗",preventTitle:"다음 이용 전 확인하세요",p1:"하이패스 단말기 장착 여부",p2:"하이패스 카드 삽입 여부",p3:"선불카드 잔액 확인",p4:"단말기 정상 작동 여부",
 translateTitle:"스마트폰 번역방법",translateSub:"하이패스 홈페이지가 한국어로 표시될 때 브라우저 번역 기능을 이용하세요.",chromeNote:"아래 화면은 Android Chrome 기준입니다. 휴대전화와 브라우저 버전에 따라 메뉴 위치가 다를 수 있습니다.",
 tr1t:"브라우저 메뉴 열기",tr1b:"오른쪽 위의 ⋮ 메뉴를 누릅니다.",tr2t:"번역 선택",tr2b:"메뉴에서 번역 기능을 선택합니다.",tr3t:"원하는 언어로 페이지 보기",tr3b:"원하는 언어를 선택하면 페이지가 번역됩니다.",backGuide:"하이패스 홈페이지 이용방법으로",
@@ -300,8 +328,8 @@ q1:"미납통행료는 어떻게 조회하나요?",a1:"메인 메뉴의 ‘하�
 en:{
 mainTitle:"Unpaid Expressway Toll Inquiry & Payment Guide",mainSub:"How to use the Hi-Pass website and where to get payment assistance.",
 guideMenu:"How to use the Hi-Pass website",guideMenuSub:"Vehicle number → search → result check.",contactMenuTitle:"Payment assistance contacts",contactMenuSub:"Phone guidance, interpretation and nearby toll-office visits.",translateMenuTitle:"Smartphone translation",translateMenuSub:"Translate the Korean Hi-Pass website into your language.",faqMenuTitle:"Important information / FAQ",faqMenuSub:"Additional toll information and common questions.",
-guideTitle:"How to use the Hi-Pass website",guideSub:"Non-members can make a simple unpaid-toll inquiry from the first screen using the vehicle number.",s1t:"Enter vehicle number",s1b:"Enter the vehicle number without spaces in the field on the Hi-Pass home screen.",s2t:"Select Search",s2b:"Tap the magnifying-glass button to the right of the vehicle-number field.",s3t:"Check the unpaid-toll result",s3b:"Check the displayed unpaid-toll count and result. The screen shown is an example.",
-memberTitle:"Detailed inquiry and website payment",memberText:"Detailed inquiry and payment on the website require member login. Non-members and foreign users can use the payment-assistance contact or visit a nearby Korea Expressway Corporation toll office after checking the result.",
+guideTitle:"How to use the Hi-Pass website",guideSub:"Non-members can make a simple unpaid-toll inquiry directly from the first screen.",s1t:"Enter vehicle number",s1b:"Enter the vehicle number without spaces in the field on the first screen.",s2t:"Select Search",s2b:"Tap the magnifying-glass button to the right of the vehicle-number field to check unpaid tolls.",s3t:"Check the inquiry result",s3b:"Check the displayed unpaid-toll count and amount. The screen is an example and contains no personal information.",
+memberTitle:"Detailed inquiry and payment require member login",memberText:"Non-members and foreign users can use the payment-assistance contact or visit a nearby Korea Expressway Corporation toll office after checking the result.",
 officialBtn:"Open Hi-Pass website ↗",preventTitle:"Before your next expressway trip",p1:"Check that the Hi-Pass device is installed",p2:"Check that the Hi-Pass card is inserted",p3:"Check prepaid-card balance",p4:"Check that the device works normally",
 translateTitle:"Smartphone translation",translateSub:"If the Hi-Pass website appears in Korean, use your browser's translation function.",chromeNote:"The screens below are based on Android Chrome. Menu locations may differ by phone and browser version.",tr1t:"Open browser menu",tr1b:"Tap the ⋮ menu in the upper-right corner.",tr2t:"Select Translate",tr2b:"Choose the translation function from the menu.",tr3t:"View the page in your language",tr3b:"Choose your language to translate the page.",backGuide:"Back to Hi-Pass website guide",
 contactTitle:"Payment assistance contacts",contactSub:"If online use is difficult, use the options below for payment guidance.",phoneTitle:"Phone payment guidance",phoneOrg:"Korea Expressway Service Western Regional Headquarters",phoneHours:"Weekdays 09:00–18:00",accountText:"After the unpaid toll is checked using your vehicle number, the payment account number will be sent separately by text message.",phoneSelect:"Choose a phone number",
