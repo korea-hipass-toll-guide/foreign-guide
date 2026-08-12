@@ -1,4 +1,5 @@
 <!doctype html>
+<!-- Hi-Pass Foreign Guide V4.9 -->
 <html lang="ko">
 <head>
 <meta charset="utf-8">
@@ -103,6 +104,24 @@ button,a,select{font:inherit}button{cursor:pointer}a{color:inherit}img{display:b
   .login-note{grid-template-columns:40px 1fr 54px;padding:14px 12px}.login-note img{width:52px;height:52px}.login-note strong{font-size:16px}
 }
 
+
+/* V4.9 — vehicle-number input helper */
+.helper-wrap{margin:2px 0 16px;padding:16px;border:1px solid #b9d9eb;border-radius:18px;background:linear-gradient(180deg,#f3fbff,#fff)}
+.helper-head{display:flex;align-items:flex-start;gap:10px}.helper-badge{padding:5px 9px;border-radius:999px;background:#e6f5fc;color:#0b6da6;font-size:11px;font-weight:950;white-space:nowrap}
+.helper-title{margin:0;color:var(--navy2);font-size:18px;line-height:1.35}.helper-desc{margin:6px 0 0;color:#61717d;font-size:13px}
+.helper-toggle{width:100%;min-height:48px;margin-top:12px;border:1px solid #bcd9e9;border-radius:14px;background:#fff;color:var(--navy);font-weight:900}
+.helper-panel{display:none;margin-top:13px}.helper-panel.open{display:block}.helper-label{margin:15px 0 7px;color:#42515d;font-size:12px;font-weight:900}
+.plate-form{display:grid;grid-template-columns:minmax(76px,1fr) 70px minmax(90px,1.15fr);gap:8px;align-items:center}
+.plate-input{width:100%;height:52px;border:2px solid #c9dce8;border-radius:12px;background:#fff;text-align:center;color:#202934;font-size:21px;font-weight:900;outline:none}
+.plate-input:focus{border-color:#2787c3;box-shadow:0 0 0 3px rgba(39,135,195,.10)}
+.plate-hangul{height:52px;border:2px solid #2787c3;border-radius:12px;background:#eff8fd;display:grid;place-items:center;color:var(--navy2);font-size:22px;font-weight:950}
+.plate-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}.plate-tab{border:1px solid #cadde8;border-radius:999px;background:#fff;color:#52636f;padding:7px 10px;font-size:12px;font-weight:850}.plate-tab.active{background:var(--navy);border-color:var(--navy);color:#fff}
+.plate-letter-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}.plate-letter{min-height:42px;border:1px solid #cbdde8;border-radius:10px;background:#fff;color:#25323c;font-size:17px;font-weight:900}.plate-letter.active{background:#e7f5fc;border:2px solid #087fc3;color:#0d4b85}
+.plate-preview{margin-top:14px;padding:13px;border:1px solid #d2e2ec;border-radius:14px;background:#fff;text-align:center}.plate-preview small{display:block;color:#71808b;font-size:11px}.plate-preview strong{display:block;margin-top:3px;color:#182633;font-size:28px;letter-spacing:.04em}
+.helper-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.helper-copy,.helper-open{min-height:48px;border-radius:12px;font-weight:900;text-decoration:none;display:flex;align-items:center;justify-content:center;text-align:center}.helper-copy{border:0;background:var(--navy);color:#fff}.helper-open{border:1px solid #bfd8e7;background:#edf7fc;color:var(--navy)}
+.helper-status{min-height:22px;margin-top:7px;text-align:center;color:#19704f;font-size:12px;font-weight:850}.helper-note{margin-top:10px;padding:10px 11px;border-radius:12px;background:#f8fafb;color:#66747e;font-size:11px;line-height:1.55}.helper-note strong{color:#4a5964}.helper-other{margin-top:8px;color:#6b7780;font-size:11px}
+@media(max-width:420px){.plate-letter-grid{grid-template-columns:repeat(6,1fr)}.helper-actions{grid-template-columns:1fr}}
+
 /* Translation */
 .translate-list{display:grid;gap:12px}.translate-step{display:grid;grid-template-columns:46px 1fr;gap:11px;padding:13px;border:1px solid var(--line);border-radius:17px;background:#fff}
 .translate-step .n{width:40px;height:40px;border-radius:12px;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:950}.translate-step strong{display:block}.translate-step p{margin:3px 0 0;color:#6a7680;font-size:13px}.translate-step img{margin-top:9px;border-radius:11px;border:1px solid #e4e9ed}
@@ -191,6 +210,22 @@ details{margin-bottom:9px;border:1px solid var(--line);border-radius:14px;backgr
           <div class="stage-visual"><img src="assets/guide-step1-v48.jpg" alt="차량번호 입력 화면"></div>
           <div class="stage-copy"><h3 data-i18n="s1t">차량번호 입력</h3><p data-i18n="s1b">첫 화면 입력창에 차량번호를 공백 없이 입력합니다.</p><img class="mini-mascot" src="assets/charo-2d.png" alt="차로차로"></div>
         </div></div>
+      </div>
+      <div class="helper-wrap">
+        <div class="helper-head"><span class="helper-badge" data-hkey="badge">입력 도움</span><div><h3 class="helper-title" data-hkey="title">한글 키보드가 없어도 차량번호를 만들 수 있습니다</h3><p class="helper-desc" data-hkey="desc">숫자는 휴대폰 숫자키패드로 입력하고, 번호판의 한글은 아래 버튼에서 선택하세요.</p></div></div>
+        <button type="button" class="helper-toggle" id="helperToggle">차량번호 입력 도우미 열기</button>
+        <div class="helper-panel" id="helperPanel">
+          <div class="helper-label" data-hkey="format">일반적인 번호판 형식: 앞 숫자 2~3자리 + 한글 + 뒤 숫자 4자리</div>
+          <div class="plate-form"><input class="plate-input" id="plateFront" type="tel" inputmode="numeric" maxlength="3" pattern="[0-9]*" autocomplete="off" placeholder="123"><div class="plate-hangul" id="plateHangulDisplay">가</div><input class="plate-input" id="plateRear" type="tel" inputmode="numeric" maxlength="4" pattern="[0-9]*" autocomplete="off" placeholder="4567"></div>
+          <div class="helper-label" data-hkey="choose">번호판에 적힌 한글을 선택하세요</div>
+          <div class="plate-tabs"><button type="button" class="plate-tab active" data-plate-group="private" data-hkey="private">일반·자가용</button><button type="button" class="plate-tab" data-plate-group="rental" data-hkey="rental">렌터카</button><button type="button" class="plate-tab" data-plate-group="business" data-hkey="business">영업용</button></div>
+          <div class="plate-letter-grid" id="plateLetterGrid"></div>
+          <div class="plate-preview"><small data-hkey="preview">완성된 차량번호</small><strong id="platePreviewText">123가4567</strong></div>
+          <div class="helper-actions"><button type="button" class="helper-copy" id="copyPlateBtn" data-hkey="copy">차량번호 복사</button><a class="helper-open" href="https://www.hipass.co.kr/main.do" target="_blank" rel="noopener noreferrer" data-hkey="openHipass">하이패스 홈페이지 열기 ↗</a></div>
+          <div class="helper-status" id="helperStatus" aria-live="polite"></div>
+          <div class="helper-note"><strong data-hkey="privacyTitle">개인정보 안내</strong><br><span data-hkey="privacy">입력한 차량번호는 저장하거나 전송하지 않습니다. 현재 브라우저 안에서만 조합·복사합니다.</span></div>
+          <div class="helper-other" data-hkey="other">※ 번호판 형식이 다르거나 해당 한글이 보이지 않으면 납부안내 연락처 또는 가까운 한국도로공사 영업소를 이용하세요.</div>
+        </div>
       </div>
       <div class="guide-stage">
         <div class="stage-rail"><span class="stage-no">2</span></div>
@@ -410,6 +445,20 @@ faqTitle:"Informasi penting / FAQ",faqSub:"Informasi penting tentang tol tertung
 q1:"Bagaimana memeriksa tol tertunggak?",a1:"Pilih ‘Cara menggunakan situs Hi-Pass’ lalu ikuti urutan: nomor kendaraan → cari → periksa hasil.",q2:"Bagaimana mendapatkan bantuan pembayaran melalui telepon?",a2:"Hubungi 031-361-3021~3026 pada hari kerja 09:00–18:00. Setelah diperiksa, rekening pembayaran akan dikirim melalui SMS.",q3:"Bagaimana jika situs Hi-Pass berbahasa Korea?",a3:"Gunakan ‘Terjemahan di ponsel’ dan fungsi terjemahan browser.",q4:"Bisakah saya mengunjungi gerbang tol terdekat?",a4:"Ya. Anda dapat mengunjungi gerbang tol terdekat yang dioperasikan Korea Expressway Corporation untuk mendapatkan panduan terkait tol tertunggak.",backMenu:"Kembali ke menu utama",footerText:"Panduan Pemeriksaan & Pembayaran Tol Tertunggak"
 };
 
+
+const H={"ko":{"badge":"입력 도움","title":"한글 키보드가 없어도 차량번호를 만들 수 있습니다","desc":"숫자는 휴대폰 숫자키패드로 입력하고, 번호판의 한글은 아래 버튼에서 선택하세요.","openBtn":"차량번호 입력 도우미 열기","closeBtn":"차량번호 입력 도우미 닫기","format":"일반적인 번호판 형식: 앞 숫자 2~3자리 + 한글 + 뒤 숫자 4자리","choose":"번호판에 적힌 한글을 선택하세요","private":"일반·자가용","rental":"렌터카","business":"영업용","preview":"완성된 차량번호","copy":"차량번호 복사","openHipass":"하이패스 홈페이지 열기 ↗","privacyTitle":"개인정보 안내","privacy":"입력한 차량번호는 저장하거나 전송하지 않습니다. 현재 브라우저 안에서만 조합·복사합니다.","other":"※ 번호판 형식이 다르거나 해당 한글이 보이지 않으면 납부안내 연락처 또는 가까운 한국도로공사 영업소를 이용하세요.","validation":"앞 숫자 2~3자리, 한글 1자, 뒤 숫자 4자리를 확인해 주세요.","copied":"복사했습니다. 하이패스 홈페이지에서 차량번호 입력칸을 길게 눌러 붙여넣으세요.","copyFail":"자동 복사가 되지 않았습니다. 완성된 차량번호를 길게 눌러 복사해 주세요."},"en":{"badge":"Input help","title":"Build your vehicle number without a Korean keyboard","desc":"Enter the numbers with your phone keypad and tap the Korean character shown on your license plate.","openBtn":"Open vehicle-number helper","closeBtn":"Close vehicle-number helper","format":"Common plate format: 2–3 front digits + Korean character + 4 rear digits","choose":"Select the Korean character on your license plate","private":"Private","rental":"Rental","business":"Commercial","preview":"Completed vehicle number","copy":"Copy vehicle number","openHipass":"Open Hi-Pass website ↗","privacyTitle":"Privacy","privacy":"Your vehicle number is not stored or transmitted. It is combined and copied only inside the current browser.","other":"※ If your plate format is different or the character is not listed, use the payment-assistance contact or visit a nearby Korea Expressway Corporation toll office.","validation":"Check 2–3 front digits, one Korean character, and 4 rear digits.","copied":"Copied. On the Hi-Pass website, press and hold the vehicle-number field and paste it.","copyFail":"Automatic copy failed. Press and hold the completed vehicle number to copy it manually."},"vi":{"badge":"Hỗ trợ nhập","title":"Tạo biển số xe mà không cần bàn phím tiếng Hàn","desc":"Nhập các số bằng bàn phím số và chạm vào ký tự tiếng Hàn trên biển số xe.","openBtn":"Mở công cụ nhập biển số","closeBtn":"Đóng công cụ nhập biển số","format":"Dạng phổ biến: 2–3 số đầu + 1 ký tự Hàn + 4 số cuối","choose":"Chọn ký tự tiếng Hàn trên biển số","private":"Xe cá nhân","rental":"Xe thuê","business":"Xe kinh doanh","preview":"Biển số hoàn chỉnh","copy":"Sao chép biển số","openHipass":"Mở trang Hi-Pass ↗","privacyTitle":"Thông tin riêng tư","privacy":"Biển số không được lưu hoặc gửi đi. Công cụ chỉ ghép và sao chép trong trình duyệt hiện tại.","other":"※ Nếu biển số có dạng khác hoặc không thấy ký tự cần chọn, hãy dùng thông tin hỗ trợ thanh toán hoặc đến trạm thu phí gần nhất.","validation":"Hãy kiểm tra 2–3 số đầu, 1 ký tự Hàn và 4 số cuối.","copied":"Đã sao chép. Trên trang Hi-Pass, nhấn giữ ô biển số rồi chọn Dán.","copyFail":"Không thể sao chép tự động. Hãy nhấn giữ biển số hoàn chỉnh để sao chép."},"zh":{"badge":"输入帮助","title":"无需韩语键盘也可以组合车牌号码","desc":"数字使用手机数字键盘输入，车牌中的韩文字请从下方按钮选择。","openBtn":"打开车牌号码输入助手","closeBtn":"关闭车牌号码输入助手","format":"常见格式：前2–3位数字 + 1个韩文字 + 后4位数字","choose":"请选择车牌上的韩文字","private":"非营业/自用","rental":"租赁车辆","business":"营业车辆","preview":"完整车牌号码","copy":"复制车牌号码","openHipass":"打开 Hi-Pass 网站 ↗","privacyTitle":"隐私说明","privacy":"输入的车牌号码不会被保存或传输，仅在当前浏览器中组合并复制。","other":"※ 如车牌格式不同或列表中没有对应韩文字，请使用缴费帮助联系方式或前往附近收费站。","validation":"请确认前2–3位数字、1个韩文字和后4位数字。","copied":"已复制。在 Hi-Pass 网站中长按车牌号码输入框，然后选择粘贴。","copyFail":"自动复制失败。请长按完整车牌号码手动复制。"},"ru":{"badge":"Помощь с вводом","title":"Составьте номер автомобиля без корейской клавиатуры","desc":"Введите цифры клавиатурой телефона и выберите корейский символ с номерного знака.","openBtn":"Открыть помощник ввода номера","closeBtn":"Закрыть помощник ввода номера","format":"Обычный формат: 2–3 цифры + корейский символ + 4 цифры","choose":"Выберите корейский символ на номерном знаке","private":"Личный","rental":"Аренда","business":"Коммерческий","preview":"Готовый номер автомобиля","copy":"Скопировать номер","openHipass":"Открыть сайт Hi-Pass ↗","privacyTitle":"Конфиденциальность","privacy":"Номер не сохраняется и не передается. Он составляется и копируется только в текущем браузере.","other":"※ Если формат номера другой или нужного символа нет, используйте контакты помощи или ближайший пункт оплаты.","validation":"Проверьте 2–3 первые цифры, один корейский символ и 4 последние цифры.","copied":"Скопировано. На сайте Hi-Pass нажмите и удерживайте поле номера и вставьте его.","copyFail":"Автоматическое копирование не удалось. Скопируйте готовый номер вручную."},"id":{"badge":"Bantuan input","title":"Susun nomor kendaraan tanpa keyboard bahasa Korea","desc":"Masukkan angka dengan keypad ponsel lalu pilih huruf Korea pada pelat kendaraan.","openBtn":"Buka bantuan nomor kendaraan","closeBtn":"Tutup bantuan nomor kendaraan","format":"Format umum: 2–3 angka depan + 1 huruf Korea + 4 angka belakang","choose":"Pilih huruf Korea pada pelat kendaraan","private":"Pribadi","rental":"Rental","business":"Komersial","preview":"Nomor kendaraan lengkap","copy":"Salin nomor kendaraan","openHipass":"Buka situs Hi-Pass ↗","privacyTitle":"Privasi","privacy":"Nomor kendaraan tidak disimpan atau dikirim. Nomor hanya disusun dan disalin di browser saat ini.","other":"※ Jika format pelat berbeda atau huruf tidak tersedia, gunakan kontak bantuan pembayaran atau gerbang tol terdekat.","validation":"Periksa 2–3 angka depan, satu huruf Korea, dan 4 angka belakang.","copied":"Tersalin. Di situs Hi-Pass, tekan lama kolom nomor kendaraan lalu tempelkan.","copyFail":"Penyalinan otomatis gagal. Salin nomor kendaraan lengkap secara manual."}};
+const plateLetters={private:["가","나","다","라","마","거","너","더","러","머","버","서","어","저","고","노","도","로","모","보","소","오","조","구","누","두","루","무","부","수","우","주"],rental:["하","허","호"],business:["바","사","아","자","배"]};
+let plateGroup="private",selectedPlateLetter="가";
+function ht(){return H[lang]||H.ko}
+function applyHelperLanguage(){document.querySelectorAll("[data-hkey]").forEach(el=>{const k=el.dataset.hkey;if(ht()[k]!==undefined)el.textContent=ht()[k]});const p=document.getElementById("helperPanel"),b=document.getElementById("helperToggle");if(b)b.textContent=p&&p.classList.contains("open")?ht().closeBtn:ht().openBtn}
+function onlyDigits(v,n){return String(v||"").replace(/\D/g,"").slice(0,n)}
+function renderPlateLetters(){const g=document.getElementById("plateLetterGrid");if(!g)return;g.innerHTML="";plateLetters[plateGroup].forEach(ch=>{const b=document.createElement("button");b.type="button";b.className="plate-letter"+(ch===selectedPlateLetter?" active":"");b.textContent=ch;b.dataset.plateLetter=ch;g.appendChild(b)})}
+function currentPlateValue(req=false){const f=onlyDigits(document.getElementById("plateFront")?.value,3),r=onlyDigits(document.getElementById("plateRear")?.value,4);if(req&&(!/^\d{2,3}$/.test(f)||!/^\d{4}$/.test(r)||!selectedPlateLetter))return "";return `${f||"123"}${selectedPlateLetter||"가"}${r||"4567"}`}
+function updatePlatePreview(){const f=document.getElementById("plateFront"),r=document.getElementById("plateRear");if(f)f.value=onlyDigits(f.value,3);if(r)r.value=onlyDigits(r.value,4);const o=document.getElementById("platePreviewText");if(o)o.textContent=currentPlateValue(false);const hh=document.getElementById("plateHangulDisplay");if(hh)hh.textContent=selectedPlateLetter}
+function setHelperStatus(msg,err=false){const e=document.getElementById("helperStatus");if(!e)return;e.textContent=msg||"";e.style.color=err?"#b3453f":"#19704f"}
+async function copyPlateNumber(){const v=currentPlateValue(true);if(!v){setHelperStatus(ht().validation,true);return}let ok=false;try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(v);ok=true}}catch(e){}if(!ok){try{const ta=document.createElement("textarea");ta.value=v;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();ta.setSelectionRange(0,v.length);ok=document.execCommand("copy");ta.remove()}catch(e){}}setHelperStatus(ok?ht().copied:ht().copyFail,!ok)}
+function initPlateHelper(){renderPlateLetters();updatePlatePreview();applyHelperLanguage();document.getElementById("plateFront")?.addEventListener("input",updatePlatePreview);document.getElementById("plateRear")?.addEventListener("input",updatePlatePreview);document.getElementById("helperToggle")?.addEventListener("click",()=>{const p=document.getElementById("helperPanel");p.classList.toggle("open");applyHelperLanguage();setHelperStatus("")});document.getElementById("copyPlateBtn")?.addEventListener("click",copyPlateNumber);document.addEventListener("click",e=>{const tab=e.target.closest("[data-plate-group]");if(tab){plateGroup=tab.dataset.plateGroup;selectedPlateLetter=plateLetters[plateGroup][0];document.querySelectorAll("[data-plate-group]").forEach(x=>x.classList.toggle("active",x===tab));renderPlateLetters();updatePlatePreview();setHelperStatus("");return}const l=e.target.closest("[data-plate-letter]");if(l){selectedPlateLetter=l.dataset.plateLetter;renderPlateLetters();updatePlatePreview();setHelperStatus("")}})}
+
 const screens=["language","menu","guide","translate","contact","faq"];
 let lang="ko";let stack=["language"];
 function tr(){return T[lang]||T.ko}
@@ -420,6 +469,7 @@ function applyLang(v){
   document.getElementById("hqLabel").style.display=ko?"":"none";document.getElementById("footerLogo").src=ko?"assets/kec-logo-ko.png":"assets/kec-logo-en.png";
   document.getElementById("footerOrg").textContent=ko?"한국도로공사 수도권본부":"Korea Expressway Corporation";
   document.querySelectorAll("[data-i18n]").forEach(el=>{const k=el.dataset.i18n;if(tr()[k]!==undefined)el.textContent=tr()[k]});
+  applyHelperLanguage();
   document.title=tr().mainTitle
 }
 function show(name,push=true){
@@ -440,6 +490,7 @@ document.getElementById("showPhones").addEventListener("click",()=>{const p=docu
  const m=h.match(/^(language|menu|guide|translate|contact|faq)-(ko|en|vi|zh|ru|id)$/);
  if(m){applyLang(m[2]);if(m[1]==="language"){stack=["language"];show("language",false)}else{stack=["language",m[1]];show(m[1],false)}}
  else{applyLang("ko");stack=["language"];show("language",false)}
+ initPlateHelper();
 })();
 </script>
 </body>
