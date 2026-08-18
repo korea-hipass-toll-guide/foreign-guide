@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Hi-Pass Foreign Guide V5.2.2 -->
+<!-- Hi-Pass Foreign Guide V5.3 -->
 <html lang="ko">
 <head>
 <meta charset="utf-8">
@@ -9,7 +9,7 @@
 <meta name="description" content="외국인을 위한 미납통행료 조회·납부 안내">
 <meta name="robots" content="noindex, nofollow">
 <title>외국인을 위한 미납통행료 조회·납부 안내</title>
-<!-- Version: V5.2.2 -->
+<!-- Version: V5.3 -->
 <link rel="icon" href="assets/favicon.png">
 <style>
 :root{
@@ -207,7 +207,7 @@ details{margin-bottom:9px;border:1px solid var(--line);border-radius:14px;backgr
 @media(max-width:620px){.platform-grid{grid-template-columns:1fr}.floating-chat{right:12px;bottom:12px;padding:8px 10px}.floating-chat span:last-child{font-size:12px}}
 
 
-/* V5.2.2 - approved mobile polish */
+/* V5.3 - approved mobile polish */
 .login-note{grid-template-columns:46px 1fr;padding:16px}
 .login-note img{display:none!important}
 .contact-route-btn{margin-top:9px}
@@ -248,6 +248,66 @@ details{margin-bottom:9px;border:1px solid var(--line);border-radius:14px;backgr
 @media(max-width:560px){
   .login-note{grid-template-columns:40px 1fr;padding:14px 12px}
   .helper-title{font-size:18px}
+}
+
+
+/* V5.3 — approved ①②③ visual layout */
+.guide-timeline{display:grid;gap:14px;margin-top:2px}
+.guide-card-v53{
+  display:grid;
+  grid-template-columns:minmax(0,1.45fr) minmax(210px,.8fr);
+  gap:0;
+  border:1px solid #cfe1ef;
+  border-radius:20px;
+  overflow:hidden;
+  background:#fff;
+  box-shadow:0 7px 22px rgba(25,74,117,.055)
+}
+.guide-visual-v53{
+  display:flex;align-items:center;justify-content:center;
+  padding:14px;
+  background:#fbfdff
+}
+.guide-visual-v53 img{
+  display:block;width:100%;height:auto;
+  border-radius:12px
+}
+.guide-copy-v53{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:22px 20px;
+  border-left:1px solid #e1ebf2
+}
+.guide-title-v53{
+  display:flex;align-items:center;gap:12px;margin-bottom:12px
+}
+.guide-no-v53{
+  flex:0 0 42px;width:42px;height:42px;
+  border-radius:50%;display:grid;place-items:center;
+  background:#0e4a9c;color:#fff;font-size:22px;font-weight:950
+}
+.guide-copy-v53 h3{
+  margin:0;color:var(--navy2);font-size:22px;
+  line-height:1.25;letter-spacing:-.03em
+}
+.guide-copy-v53 p{
+  margin:0;color:#4f5d69;font-size:14px;line-height:1.7
+}
+.helper-wrap{margin-top:0}
+@media(max-width:620px){
+  .guide-timeline{gap:12px}
+  .guide-card-v53{grid-template-columns:1fr;border-radius:17px}
+  .guide-visual-v53{padding:9px 9px 3px;background:#fff}
+  .guide-copy-v53{
+    padding:13px 14px 15px;
+    border-left:0;border-top:1px solid #e5eef4
+  }
+  .guide-title-v53{gap:9px;margin-bottom:6px}
+  .guide-no-v53{
+    flex-basis:34px;width:34px;height:34px;
+    font-size:18px
+  }
+  .guide-copy-v53 h3{font-size:19px}
+  .guide-copy-v53 p{font-size:13px;line-height:1.6}
 }
 
 </style>
@@ -322,12 +382,12 @@ details{margin-bottom:9px;border:1px solid var(--line);border-radius:14px;backgr
   <div class="page-head"><h2 data-i18n="guideTitle">하이패스 홈페이지 이용방법</h2><p data-i18n="guideSub">비회원도 첫 화면에서 미납 여부를 간단히 조회할 수 있습니다.</p></div>
   <div class="page-pad">
     <div class="guide-timeline">
-      <div class="guide-stage">
-        <div class="stage-rail"><span class="stage-no">1</span></div>
-        <div class="stage-card"><div class="stage-inner">
-          <div class="stage-visual"><img src="assets/guide-step1-v522.jpg" alt="차량번호 입력 화면"></div>
-          <div class="stage-copy"><h3 data-i18n="s1t">차량번호 입력</h3><p data-i18n="s1b">첫 화면 입력창에 차량번호를 공백 없이 입력합니다.</p></div>
-        </div></div>
+      <div class="guide-card-v53">
+        <div class="guide-visual-v53"><img src="assets/guide-step1-v53.png" alt="차량번호 입력 위치 안내"></div>
+        <div class="guide-copy-v53">
+          <div class="guide-title-v53"><span class="guide-no-v53">1</span><h3 data-i18n="s1t">차량번호 입력</h3></div>
+          <p data-i18n="s1b">첫 화면 입력창에 차량번호를 공백 없이 입력합니다.</p>
+        </div>
       </div>
       <div class="helper-wrap">
         <div class="helper-head"><span class="helper-badge" data-hkey="badge">입력 도움</span><div><h3 class="helper-title" data-hkey="title">한글 키보드가 없나요? 차량번호 입력 도우미를 이용하세요.</h3><p class="helper-desc" data-hkey="desc">숫자는 휴대폰 숫자키패드로 입력하고, 번호판의 한글은 아래 버튼에서 선택하세요.</p></div></div>
@@ -345,19 +405,19 @@ details{margin-bottom:9px;border:1px solid var(--line);border-radius:14px;backgr
           <div class="helper-other" data-hkey="other">※ 번호판 형식이 다르거나 해당 한글이 보이지 않으면 납부안내 연락처 또는 가까운 한국도로공사 영업소를 이용하세요.</div>
         </div>
       </div>
-      <div class="guide-stage">
-        <div class="stage-rail"><span class="stage-no">2</span></div>
-        <div class="stage-card"><div class="stage-inner">
-          <div class="stage-visual"><img src="assets/guide-step2-v522.jpg" alt="조회 버튼 화면"></div>
-          <div class="stage-copy"><h3 data-i18n="s2t">조회 버튼 선택</h3><p data-i18n="s2b">차량번호 입력창 오른쪽의 돋보기 버튼을 눌러 미납 여부를 조회합니다.</p></div>
-        </div></div>
+      <div class="guide-card-v53">
+        <div class="guide-visual-v53"><img src="assets/guide-step2-v53.png" alt="조회 버튼 위치 안내"></div>
+        <div class="guide-copy-v53">
+          <div class="guide-title-v53"><span class="guide-no-v53">2</span><h3 data-i18n="s2t">조회 버튼 선택</h3></div>
+          <p data-i18n="s2b">차량번호 입력창 오른쪽의 돋보기 버튼을 눌러 미납 여부를 조회합니다.</p>
+        </div>
       </div>
-      <div class="guide-stage">
-        <div class="stage-rail"><span class="stage-no">3</span></div>
-        <div class="stage-card"><div class="stage-inner">
-          <div class="stage-visual"><img src="assets/guide-step3-v522.jpg" alt="미납 결과 예시 화면"></div>
-          <div class="stage-copy"><h3 data-i18n="s3t">조회 결과 확인</h3><p data-i18n="s3b">조회된 미납 건수와 금액을 확인합니다. 화면은 개인정보가 포함되지 않은 안내용 예시입니다.</p></div>
-        </div></div>
+      <div class="guide-card-v53">
+        <div class="guide-visual-v53"><img src="assets/guide-step3-v53.png" alt="조회 결과 확인 위치 안내"></div>
+        <div class="guide-copy-v53">
+          <div class="guide-title-v53"><span class="guide-no-v53">3</span><h3 data-i18n="s3t">조회 결과 확인</h3></div>
+          <p data-i18n="s3b">조회된 미납 건수와 금액을 확인합니다. 화면은 개인정보가 포함되지 않은 안내용 예시입니다.</p>
+        </div>
       </div>
     </div>
 
