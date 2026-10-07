@@ -1,0 +1,65 @@
+/* Preserve the approved V5.4 visual design; add state, wrapping and access fixes. */
+html{scroll-behavior:auto}
+html:not([lang="ko"]) body{word-break:normal;overflow-wrap:anywhere}
+html:not([lang="ko"]) .page-head h2,html:not([lang="ko"]) .main-intro h2{letter-spacing:normal}
+html:not([lang="ko"]) .helper-head{flex-wrap:wrap}
+html:not([lang="ko"]) .helper-head>div{flex:1 1 200px;min-width:0}
+html:not([lang="ko"]) .helper-badge{white-space:normal;max-width:100%}
+html:not([lang="ko"]) .pending-badge{white-space:normal;text-align:left}
+html:not([lang="ko"]) .helper-copy,html:not([lang="ko"]) .helper-open,html:not([lang="ko"]) .helper-toggle{padding:10px 12px;min-width:0;line-height:1.5}
+html[lang="my"] body{font-family:"Noto Sans Myanmar","Myanmar Text","Padauk",sans-serif;line-height:1.8;letter-spacing:normal}
+html[lang="ne"] body{font-family:"Noto Sans Devanagari","Nirmala UI","Mangal",sans-serif;line-height:1.65;letter-spacing:normal}
+html[lang="my"] .menu-card strong,html[lang="my"] .page-head h2,html[lang="my"] .main-intro h2,html[lang="my"] .helper-title{line-height:1.65;letter-spacing:normal}
+html[lang="ne"] .menu-card strong,html[lang="ne"] .page-head h2,html[lang="ne"] .main-intro h2,html[lang="ne"] .helper-title{line-height:1.5;letter-spacing:normal}
+[hidden]{display:none!important}
+button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #e99517;outline-offset:3px}
+h1[tabindex="-1"]:focus,h2[tabindex="-1"]:focus{outline:none}
+.plate-input[aria-invalid="true"]{border-color:#b3453f}
+.plate-preview strong{white-space:nowrap;word-break:normal;overflow-wrap:normal;color:#65717c}
+.plate-preview strong.is-complete{color:#182633}
+.helper-status.is-error{color:#b3453f}
+.helper-status{overflow-wrap:anywhere;line-height:1.65}
+.helper-copy:disabled{opacity:.65;cursor:wait}
+.manual-copy{padding:9px 0}
+.manual-copy input{width:100%;border:1px solid #bfd8e7;border-radius:10px;padding:10px;text-align:center;font:700 23px/1.5 sans-serif;user-select:all;-webkit-user-select:all;background:#fff;color:#123a78}
+#platePreviewText{user-select:text;-webkit-user-select:text}
+.helper-flow{font-size:12px;color:#24577f;line-height:1.7;margin:10px 0 0}
+.guide-entry-note{padding:12px 14px;margin:0 0 18px;border:1px solid #cce0ec;border-radius:14px;background:#f5fbff}
+.guide-entry-note p,.newtab-note{font-size:12px;line-height:1.65;color:#52636f;margin:0}
+.guide-entry-note .action{margin-top:9px}
+.newtab-note{margin-top:8px}
+.recent-note{margin-top:16px;background:#fffaf0;border:1px solid #f0dfb9;border-radius:15px;padding:15px}
+.recent-note strong{display:block;color:#7b5510;font-size:15px;margin-bottom:6px}
+.recent-note p{font-size:13px;line-height:1.7;color:#655542;margin:0}
+.auth-image-note{font-size:11px;color:#596977;line-height:1.6;margin:0 14px 12px}
+.guide-visual-v53.with-caption{display:flex;flex-direction:column;gap:7px}
+.callout{padding:12px 14px;margin-bottom:14px;border:1px solid #dce7ef;border-radius:14px;background:#f8fbfd;color:#52636f;font-size:13px}
+.build-version{margin-top:8px;font-size:11px;line-height:1.4;opacity:.75}
+.app,.screen,.page-pad,.header-actions,.guide-copy-v53{min-width:0}
+.menu-card{min-width:0}
+.menu-card strong,.menu-card span,.action,.contact-title,.org,.number{overflow-wrap:anywhere}
+.platform-step>div:last-child,.browser-bar,.browser-url{min-width:0}
+.ui-demo .menu-row{height:auto;min-height:28px;line-height:1.5}
+.floating-chat{bottom:calc(12px + env(safe-area-inset-bottom,0px))}
+.page-pad{padding-bottom:76px}
+.plate-tabs{row-gap:8px}
+.platform-tabs[role="group"] button{line-height:1.4}
+@media(max-width:480px){
+ .topbar{flex-wrap:wrap}
+ .header-actions{margin-left:auto;flex-wrap:wrap;max-width:100%}
+ .menu-home-btn{white-space:normal;max-width:142px;height:auto;min-height:38px;line-height:1.35}
+ .menu-card strong,.menu-card span{max-width:100%}
+ .menu-card .ico{pointer-events:none}
+ .guide-entry-note{padding:11px}
+ .plate-form{grid-template-columns:minmax(0,1fr) 54px minmax(0,1.15fr);gap:6px}
+ .plate-input{min-width:0}
+ .number{font-size:22px}
+}
+@media(max-width:360px){
+ html[lang="my"] .menu-grid,html[lang="ne"] .menu-grid{grid-template-columns:1fr}
+ .plate-preview strong{font-size:24px}
+}
+@media(max-width:620px){body.is-editing .floating-chat{display:none!important}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+/* Keep uploaded CI at its native aspect ratio when responsive width changes. */
+.brand-logo,#footerLogo{height:auto;object-fit:contain}
